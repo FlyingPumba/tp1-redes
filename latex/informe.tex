@@ -1,0 +1,118 @@
+\documentclass[a4paper]{article}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage{charter} % tipografia
+%\usepackage{graphicx}
+\usepackage[pdftex]{graphicx}
+\usepackage{bm} % bold font in math mode
+\usepackage{sidecap}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{makeidx}
+\usepackage{float}
+\usepackage{amsmath, amsthm, amssymb}
+\newtheorem{theorem}{Teorema}
+\newtheorem{customthm}{Teorema}
+\newtheorem{corollary}{Corolario}[theorem]
+\newtheorem{proposition}[theorem]{Proposición}
+\newtheorem{innercustomlemma}{Lemma}
+\newenvironment{customlemma}[1]
+  {\renewcommand\theinnercustomlemma{#1}\innercustomlemma}
+  {\endinnercustomlemma}
+\usepackage{amsfonts}
+\usepackage{sectsty}
+\usepackage{wrapfig}
+\usepackage{listings}
+\usepackage{hyperref} % links
+\usepackage{algorithm} %http://www.ctan.org/pkg/algorithms
+\usepackage{algorithmic}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{pgfplots}
+\usepackage{tabularx} % tablas copadas
+% \usepackage{pgfplotstable}
+% custom
+\input{codesnippet}
+\input{page.layout}
+\input{extras}
+% \setcounter{secnumdepth}{2}
+\usepackage{underscore}
+\usepackage{kbordermatrix}% Matrix column labels
+\usetikzlibrary{arrows,shapes}
+\usepackage{tkz-graph}
+\usepackage{caratula}
+\usepackage{url}
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily,
+    keywordstyle=\color{blue}\ttfamily,
+    stringstyle=\color{red}\ttfamily,
+    commentstyle=\color{ForestGreen}\ttfamily,
+    morecomment=[l][\color{magenta}]{\#},
+    literate={á}{{\'a}}1 {ó}{{\'o}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ú}{{\'u}}1 {Á}{{\'A}}1 {Í}{{\'I}}1 {É}{{\'E}}1 {Ú}{{\'U}}1 {Ó}{{\'O}}1 {\ \ }{{\ }}1,
+	breaklines=true,
+	tabsize=2
+}
+
+\DeclareUnicodeCharacter{2212}{-}
+
+% *********************** %
+\usepackage{tikz}
+\usetikzlibrary{graphs}
+\usetikzlibrary{calc}
+\usetikzlibrary{arrows}
+\usetikzlibrary{matrix}
+% Otros
+\usepackage{arrayjobx}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{natbib}
+\usepackage{etoolbox}
+\usepackage{listingsutf8}
+\lstset{inputencoding=utf8/latin1}
+\usepackage{fancyvrb}
+\usepackage{pgfplotstable}
+\usepackage{float}
+\newcommand{\subscript}[2]{$#1 _ #2$}
+
+
+% ******************************************************** %
+\begin{document}
+\thispagestyle{empty}
+\materia{Teoría de las Comunicaciones}
+\submateria{Primer Cuatrimestre de 2016}
+\titulo{Trabajo Práctico I}
+%\subtitulo{Grupo: }
+\integrante{Iv\'an Arcuschin}{678/13}{iarcuschin@gmail.com}
+\integrante{Federico De Rocco}{408/13}{fede.183@hotmail.com}
+\integrante{Mart\'in Jedwabny}{885/13}{martiniedva@gmail.com}
+\integrante{Jos\'e Massigoge}{954/12}{jmmassigoge@gmail.com}
+\maketitle
+% no footer on the first page
+\thispagestyle{empty}
+\newpage
+
+\tableofcontents
+
+\newpage
+\section{Introducción}
+\input{intro}
+
+\newpage
+\section{Conclusiones}
+\input{conclusiones}
+
+% \newpage
+% \bibliographystyle{plain}
+% \section{Referencias}
+% \begingroup
+% \renewcommand{\section}[2]{}
+% \bibliography{informe}
+% \endgroup
+%
+% \newpage
+% \appendix
+% \input{apendice}
+
+\end{document}
