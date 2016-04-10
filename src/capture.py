@@ -10,9 +10,14 @@ def getLayersList(pkt):
         res.append(pkt.name)
     return res
 
+types = []
 def packteHandler(pkt):
+    global types
     print pkt.summary()
-    print getLayersList(pkt)
+    try:
+        types.append(pkt.type)
+    except AttributeError:
+        print "No type"
 
 count = 0
 def stopper(pkt):
