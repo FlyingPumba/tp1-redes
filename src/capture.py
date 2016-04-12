@@ -68,6 +68,9 @@ def calcularEntropia(lista):
 
 exp = ""
 if __name__ == "__main__":
+    # ip = [x[4] for x in  scapy.all.conf.route.routes if x[2] != '0.0.0.0'][0]
+    # bdcst = [x[2] for x in  scapy.all.conf.route.routes if x[2] != '0.0.0.0'][0]
+
     if len(sys.argv) < 2:
         print ''
         print "Usage: " + sys.argv[0] + " <interface> <exp>"
