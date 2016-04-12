@@ -15,15 +15,22 @@ types = []
 def entropiaEthernet(pkt):
     global types
     if Ether in pkt:
-        print pkt.summary()
+        print ">> {0}".format(pkt.summary())
         types.append(pkt.type)
+
+hosts = []
+def hostsArp(pkt):
+    if ARP in pkt:
+        print ">> {0}".format(pkt.summary())
+        print pkt.sprintf("%ARP.hwsrc% %ARP.psrc% %ARP.pdst%")
+        hosts.append(pkt[ARP])
 
 time_start = 0
 def timeStopper(pkt):
     global time_start, types
     time_stop = time.time()
     diff = time_stop - time_start
-    if diff > 2: # 10 segundos
+    if diff > 10: # 10 segundos
         if exp == "entropia-tipos":
             # computar entropia de types
             calcularEntropia(types)
@@ -50,14 +57,14 @@ def calcularEntropia(lista):
             elementosDistintos[elem] = elementosDistintos[elem] + 1
     # calculamos la entropia
     entropia = 0
-    print ""
+    print "\nElementos de la fuente de informacion:"
     print elementosDistintos
     for elem, apariciones in elementosDistintos.iteritems():
         proba = float(apariciones)/float(len(lista))
         print "Simbolo {0} tiene probabilidad {1}".format(elem, proba)
-        entropia += proba * (- math.log(proba))
+        entropia += proba * (- math.log(proba)/math.log(2))
 
-    print "La entropia de la fuente es {0}".format(entropia)
+    print "\nLa entropia de la fuente es {0}".format(entropia)
 
 exp = ""
 if __name__ == "__main__":
@@ -65,8 +72,11 @@ if __name__ == "__main__":
         print ''
         print "Usage: " + sys.argv[0] + " <interface> <exp>"
         print "\tDonde <exp> puede ser: \"entropia-tipos\", \"nodos-ARP\""
-    elif len(sys.argv) > 2 and sys.argv[2] == "entropia-tipos":
+    elif len(sys.argv) > 2:
         interface = sys.argv[1]
-        exp = sys.argv[2]
         time_start = time.time()
-        p = sniff(iface = interface, prn = entropiaEthernet, stop_filter = timeStopper)
+        exp = sys.argv[2]
+        if exp == "entropia-tipos":
+            sniff(iface = interface, prn = entropiaEthernet, stop_filter = timeStopper)
+        elif exp == "nodos-ARP":
+            sniff(iface = interface, prn = hostsArp, stop_filter = timeStopper)
