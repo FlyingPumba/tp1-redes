@@ -18,12 +18,20 @@ def entropiaEthernet(pkt):
         print ">> {0}".format(pkt.summary())
         types.append(pkt.type)
 
-hosts = []
+hosts = set()
 def hostsArp(pkt):
     if ARP in pkt:
         print ">> {0}".format(pkt.summary())
-        print pkt.sprintf("%ARP.hwsrc% %ARP.psrc% %ARP.pdst%")
-        hosts.append(pkt[ARP])
+        if pkt[ARP].op == 1:
+            #who-has
+            # print pkt.sprintf("%ARP.hwsrc%") 
+            # %ARP.psrc% %ARP.pdst%"
+            hosts.add(pkt[ARP].hwsrc)
+        else:
+            #reply
+            # print pkt.sprintf("%ARP.hwdst%") 
+            # %ARP.psrc% %ARP.pdst%"
+            hosts.add(pkt[ARP].hwdst)
 
 time_start = 0
 def timeStopper(pkt):
@@ -34,6 +42,8 @@ def timeStopper(pkt):
         if exp == "entropia-tipos":
             # computar entropia de types
             calcularEntropia(types)
+        elif exp == "nodos-ARP":
+            print hosts
         return True
     else:
         return False
