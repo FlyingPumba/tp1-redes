@@ -15,8 +15,12 @@ types = []
 def entropiaEthernet(pkt):
     global types
     if Ether in pkt:
+        s = pkt.getlayer(1).summary().partition(' ')[0]
         print ">> {0}".format(pkt.summary())
-        types.append(pkt.type)
+        if exp == "exp-proto":
+            with open("exp-proto.dat","a+") as f:
+                f.write(pkt.getlayer(1).summary()+"\n")
+        types.append(s)
 
 hosts = set()
 def hostsArp(pkt):
@@ -38,8 +42,8 @@ def timeStopper(pkt):
     global time_start, types
     time_stop = time.time()
     diff = time_stop - time_start
-    if diff > 10: # 10 segundos
-        if exp == "entropia-tipos":
+    if diff > tiempo: # 10 segundos
+        if exp == "entropia-tipos" or exp == "exp-proto":
             # computar entropia de types
             calcularEntropia(types)
         elif exp == "nodos-ARP":
@@ -72,11 +76,18 @@ def calcularEntropia(lista):
     for elem, apariciones in elementosDistintos.iteritems():
         proba = float(apariciones)/float(len(lista))
         print "Simbolo {0} tiene probabilidad {1}".format(elem, proba)
+        if exp == "exp-proto":
+            with open("exp-proto.dat","a+") as f:
+                f.write("Simbolo {0} tiene probabilidad {1}\n".format(elem, proba))
         entropia += proba * (- math.log(proba)/math.log(2))
 
     print "\nLa entropia de la fuente es {0}".format(entropia)
+    if exp == "exp-proto":
+        with open("exp-proto.dat","a+") as f:
+            f.write("La entropia de la fuente es {0}\n")
 
 exp = ""
+tiempo = 10
 if __name__ == "__main__":
     if len(sys.argv) < 2:
         print ''
@@ -86,7 +97,9 @@ if __name__ == "__main__":
         interface = sys.argv[1]
         time_start = time.time()
         exp = sys.argv[2]
-        if exp == "entropia-tipos":
+        if len(sys.argv) > 3:
+            tiempo = int(sys.argv[3])
+        if exp == "entropia-tipos" or exp == "exp-proto":
             sniff(iface = interface, prn = entropiaEthernet, stop_filter = timeStopper)
         elif exp == "nodos-ARP":
             sniff(iface = interface, prn = hostsArp, stop_filter = timeStopper)
