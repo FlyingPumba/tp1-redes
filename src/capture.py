@@ -22,44 +22,26 @@ def entropiaEthernet(pkt):
                 f.write(pkt.getlayer(1).summary()+"\n")
         types.append(s)
 
+nodos = []
+def nodosDistinguidos(pkt):
+    print ">> {0}".format(pkt.summary())
+    if pkt[ARP].op == 1: #who-has
+        nodos.append(pkt[ARP].pdst)
+
 hosts = set()
 def hostsArp(pkt):
     if ARP in pkt:
         print ">> {0}".format(pkt.summary())
         if pkt[ARP].op == 1:
             #who-has
-            # print pkt.sprintf("%ARP.hwsrc%") 
+            # print pkt.sprintf("%ARP.hwsrc%")
             # %ARP.psrc% %ARP.pdst%"
             hosts.add(pkt[ARP].hwsrc)
         else:
             #reply
-            # print pkt.sprintf("%ARP.hwdst%") 
+            # print pkt.sprintf("%ARP.hwdst%")
             # %ARP.psrc% %ARP.pdst%"
             hosts.add(pkt[ARP].hwdst)
-
-time_start = 0
-def timeStopper(pkt):
-    global time_start, types
-    time_stop = time.time()
-    diff = time_stop - time_start
-    if diff > tiempo: # 10 segundos
-        if exp == "entropia-tipos" or exp == "exp-proto":
-            # computar entropia de types
-            calcularEntropia(types)
-        elif exp == "nodos-ARP":
-            print hosts
-        return True
-    else:
-        return False
-
-count = 0
-def countStopper(pkt):
-    global count # Needed to modify global copy of count
-    if count > 50:
-        return True
-    else:
-        count = count + 1
-        return False
 
 def calcularEntropia(lista):
     elementosDistintos = {}
@@ -87,22 +69,31 @@ def calcularEntropia(lista):
             f.write("La entropia de la fuente es {0} \n".format(entropia))
 
 exp = ""
-tiempo = 10
 if __name__ == "__main__":
     # ip = [x[4] for x in  scapy.all.conf.route.routes if x[2] != '0.0.0.0'][0]
     # bdcst = [x[2] for x in  scapy.all.conf.route.routes if x[2] != '0.0.0.0'][0]
 
+    tiempo = 60
+
     if len(sys.argv) < 2:
         print ''
         print "Usage: " + sys.argv[0] + " <interface> <exp>"
-        print "\tDonde <exp> puede ser: \"entropia-tipos\", \"nodos-ARP\""
+        print "\tDonde <exp> puede ser: \"entropia-tipos\", \"exp-proto\", \"exp-nodos\", \"nodos-ARP\""
     elif len(sys.argv) > 2:
         interface = sys.argv[1]
         time_start = time.time()
         exp = sys.argv[2]
         if len(sys.argv) > 3:
             tiempo = int(sys.argv[3])
-        if exp == "entropia-tipos" or exp == "exp-proto":
-            sniff(iface = interface, prn = entropiaEthernet, stop_filter = timeStopper)
+        if exp == "entropia-tipos":
+            sniff(iface = interface, prn = entropiaEthernet, timeout = tiempo)
+            calcularEntropia(types)
+        elif exp == "exp-proto":
+            p = sniff(iface = interface, prn = entropiaEthernet, timeout = tiempo)
+            calcularEntropia(types)
+        elif exp == "exp-nodos":
+            p = sniff(iface = interface, prn = nodosDistinguidos, timeout = tiempo, filter="arp")
+            calcularEntropia(nodos)
         elif exp == "nodos-ARP":
-            sniff(iface = interface, prn = hostsArp, stop_filter = timeStopper)
+            sniff(iface = interface, prn = hostsArp, timeout = 60)
+            print hosts
