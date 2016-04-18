@@ -84,7 +84,7 @@ def calcularEntropia(lista):
     print "\nLa entropia de la fuente es {0}".format(entropia)
     if exp == "exp-proto":
         with open("exp-proto.dat","a+") as f:
-            f.write("La entropia de la fuente es {0}\n")
+            f.write("La entropia de la fuente es {0} \n".format(entropia))
 
 exp = ""
 tiempo = 10
