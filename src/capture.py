@@ -22,11 +22,13 @@ def entropiaEthernet(pkt):
                 f.write(pkt.getlayer(1).summary()+"\n")
         types.append(s)
 
-nodos = []
+nodos_dst = []
+nodos_src = []
 def nodosDistinguidos(pkt):
     print ">> {0}".format(pkt.summary())
     if pkt[ARP].op == 1: #who-has
-        nodos.append(pkt[ARP].pdst)
+        nodos_dst.append(pkt[ARP].pdst)
+        nodos_src.append(pkt[ARP].psrc)
 
 hosts = set()
 def hostsArp(pkt):
@@ -73,7 +75,7 @@ if __name__ == "__main__":
     # ip = [x[4] for x in  scapy.all.conf.route.routes if x[2] != '0.0.0.0'][0]
     # bdcst = [x[2] for x in  scapy.all.conf.route.routes if x[2] != '0.0.0.0'][0]
 
-    tiempo = 60
+    tiempo = 60 * 5
 
     if len(sys.argv) < 2:
         print ''
@@ -93,7 +95,10 @@ if __name__ == "__main__":
             calcularEntropia(types)
         elif exp == "exp-nodos":
             p = sniff(iface = interface, prn = nodosDistinguidos, timeout = tiempo, filter="arp")
-            calcularEntropia(nodos)
+            print "Entropia destino paquetes ARP Who Has"
+            calcularEntropia(nodos_dst)
+            print "Entropia fuente paquetes ARP Who Has"
+            calcularEntropia(nodos_src)
         elif exp == "nodos-ARP":
             sniff(iface = interface, prn = hostsArp, timeout = 60)
             print hosts
