@@ -57,16 +57,25 @@ def calcularEntropia(lista):
             elementosDistintos[elem] = elementosDistintos[elem] + 1
     # calculamos la entropia
     entropia = 0
+    sum_0025 = 0.0
+    sum_0005 = 0.0
     print "\nElementos de la fuente de informacion:"
     print elementosDistintos
     for elem, apariciones in elementosDistintos.iteritems():
         proba = float(apariciones)/float(len(lista))
         elementosDistintos[elem] = proba
+        if proba <= 0.005:
+            sum_0005 += proba
+        elif proba <= 0.025:
+            sum_0025 += proba
         entropia += proba * (- math.log(proba)/math.log(2))
 
     sorted_elems = sorted(elementosDistintos.items(), key=operator.itemgetter(1), reverse=True)
     for tupla in sorted_elems:
-        print "Simbolo {0} tiene probabilidad {1}".format(tupla[0], tupla[1])
+        if tupla[1] > 0.025:
+            print "Simbolo {0} tiene probabilidad {1}".format(tupla[0], tupla[1])
+    print "Los simbolos con probabilidad menor o igual a 0.025 suman probabilidad {0}".format(sum_0025)
+    print "Los simbolos con probabilidad menor o igual a 0.005 suman probabilidad {0}".format(sum_0005)
     print "\nLa entropia de la fuente es {0}".format(entropia)
 
 exp = ""
