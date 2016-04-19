@@ -47,7 +47,7 @@ Los resultados fueron los siguientes: \\
     xlabel= {Dataset 1},
     ylabel= {Probabilidad},
     symbolic x coords={IPv6,ARP,IP},
-    point meta={y*100}, %y-Werte mal 100 für Prozent 
+    point meta={y*100}, %y-Werte mal 100 für Prozent
     yticklabel={\pgfmathparse{\tick*100}\pgfmathprintnumber{\pgfmathresult}\%},
     axis lines*=left,
     clip=false
@@ -93,7 +93,7 @@ Los resultados fueron los siguientes: \\
     xlabel= {Dataset 2},
     ylabel= {Probabilidad},
     symbolic x coords={IPv6,ARP,IP},
-    point meta={y*100}, %y-Werte mal 100 für Prozent 
+    point meta={y*100}, %y-Werte mal 100 für Prozent
     yticklabel={\pgfmathparse{\tick*100}\pgfmathprintnumber{\pgfmathresult}\%},
     axis lines*=left,
     clip=false
@@ -135,7 +135,7 @@ En el segundo Dataset, ya podemos hablar de una red (el Laboratorio de Computaci
 
 \subsection{Experimento incidencia de ARP}
 
-Usaremos la misma forma de medir que describimos en el ejercicio anterior para poder observar la incidencia de paquetes ARP en la red voy a utilizar una serie de muestras 
+Usaremos la misma forma de medir que describimos en el ejercicio anterior para poder observar la incidencia de paquetes ARP en la red voy a utilizar una serie de muestras
 tomadas de distintas redes y graficarlas en un histograma, después de mostrar los resultados daremos una explicación del por que de los mismo. Aclaración: todas las capturas
 son de 15 minutos.
 
@@ -145,13 +145,29 @@ son de 15 minutos.
 \caption{Comparación de porcentaje de apariciones de ARP en distintas redes o con distintas condiciones.\label{overflow}}
 \end{figure}
 
-Como podemos ver la red de los laboratorios tiene más porcentaje de paquetes ARP que el de la biblioteca. Esto se debe a que en el laboratorio del pabellón 1 ingresan 
-constantemente personas y, por lo tanto, la mayoría de ellos ingresan en la red a través de las computadoras del mismo o usando el wifi de estos con sus celulares. Esto 
-ocurre en menor medida en la biblioteca ya que no se usan computadoras que no sean propias de los que ingresan y, por lo tanto, hay mucho más tráfico de paquetes ARP en la red 
+Como podemos ver la red de los laboratorios tiene más porcentaje de paquetes ARP que el de la biblioteca. Esto se debe a que en el laboratorio del pabellón 1 ingresan
+constantemente personas y, por lo tanto, la mayoría de ellos ingresan en la red a través de las computadoras del mismo o usando el wifi de estos con sus celulares. Esto
+ocurre en menor medida en la biblioteca ya que no se usan computadoras que no sean propias de los que ingresan y, por lo tanto, hay mucho más tráfico de paquetes ARP en la red
 de los laboratorios. Además al estar en una red privada, es más común que se efectúen envíos de mensajes entre computadoras y los routers de las mismas.
 
-En menor medida tenemos los casos tomados en la red de un hogar, teniendo como sus dos mediciones a cuando solamente hay un dispositivo, el mismo con el que se realiza la medición, 
-conectado a la red y cuando hay más cantidad. Podemos ver que el tráfico de paquetes ARP es muy bajo en ambos casos en comparación a las muestras anteriores. Sin embargo, 
+En menor medida tenemos los casos tomados en la red de un hogar, teniendo como sus dos mediciones a cuando solamente hay un dispositivo, el mismo con el que se realiza la medición,
+conectado a la red y cuando hay más cantidad. Podemos ver que el tráfico de paquetes ARP es muy bajo en ambos casos en comparación a las muestras anteriores. Sin embargo,
 cuando hay mayor cantidad de dispositivos el tráfico general aumenta y también el porcentaje de paquetes ARP, porque en este caso hay mas hosts.
 
 % end subsection
+
+
+\subsection{Experimento nodos distinguidos}
+
+Para distinguir los nodos de una red, analizaremos la \texttt{IP} fuente y destino de los paquetes \texttt{ARP Who-Has}.
+No utilizaremos otros paquetes distintos de \texttt{ARP}, ya que queremos restringirnos a las comunicaciones internas de la subred.
+
+\begin{itemize}
+    \item Diremos que un nodo es \textbf{distinguido como destino}, si la probabilidad de que sea destino en un paquete \texttt{Who-Has} es alta (que signfica alta?).
+
+        En esta categoria, podríamos conjeturar que el Gateway de una red va a ser un nodo distinguido como destino,
+        ya que los otros nodos buscan enviarle información a su IP constantemente.
+    \item Diremos que un nodo es \textbf{distinguido como fuente}, si la probabilidad de que sea fuente en un paquete \texttt{Who-Has} es alta (que signfica alta?).
+
+        En esta categoria, un nodo tendría que enviar muchos más paquetes que el resto para distinguirse como fuente.
+\end{itemize}
