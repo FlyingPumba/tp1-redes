@@ -8,19 +8,19 @@ En esta sección desarrollaremos y mostraremos los resultados de los experimento
 
 \subsection{Experimento protocolos distinguidos}
 
-Para analizar los protocolos distinguidos fuimos guardando los resultados de sniffear diferentes redes y tomar como fuente de información S el campo .type de los paquetes que se fueron procesando. Fundamentalmente vimos tres tipos de protocolos: ARP, IP (es decir IPv4) e IPv6. Dentro de los paquetes IP pudimos ver que la mayoria, a su vez, llevaban paquetes ICMP, TCP o UDP. A traves de la libreria "Scapy" de "Python" tomamos dos muestras de los paquetes 'Ethernet' que se pudieron detectar:
+Para analizar los protocolos distinguidos fuimos guardando los resultados de sniffear diferentes redes y tomar como fuente de información S el campo .type de los paquetes que se fueron procesando. Fundamentalmente vimos tres tipos de protocolos: ARP, IP (es decir IPv4) e IPv6. Dentro de los paquetes IP pudimos ver que la mayoría, a su vez, llevaban paquetes ICMP, TCP o UDP. A traves de la libreria "Scapy" de "Python" tomamos dos muestras de los paquetes 'Ethernet' que se pudieron detectar:
 
 \begin{itemize}
 \item Dataset 1: Biblioteca pabellon 2 (wifi) a las 3pm
 \item Dataset 2: Laboratorios pabellon 1 (wifi) a las 5pm
 \end{itemize}
 
-Cada dataset contiene todos los paquetes observados junto al protocolo que se uso. De ahi calculamos la cantidad de apariciones de cada protocolo, la probabilidad de aparicion de cada protocolo, calculamos la entropia y la comparamos con la informacion que aporta cada simbolo de S (ARP, IP e IPv6).\\
+Cada dataset contiene todos los paquetes observados junto al protocolo que se uso. De ahí calculamos la cantidad de apariciones de cada protocolo, la probabilidad de aparición de cada protocolo, calculamos la entropía y la comparamos con la información que aporta cada símbolo de S (ARP, IP e IPv6).\\
 
 Por eso, para distinguir \emph{protocolos} tomamos a
 aquellos cuya probabilidad de aparición era alta, de forma que la información provista por el símbolo fuera menor a la entropía de la fuente S.\\
 
-Ahora, para analizar los datos, planteamos histogramas donde podemos ver la cantidad de información $I(s) = -log_2(P(s))$ que aporta cada símbolo de la fuente. Luego lo comparamos con la entropía y definimos los \emph{protocolos distinguidos} como los que son mas bajos que la entropía. Esto lo hicimos porque según la fórmula de Shannon, la entropía $\sum\limits_{s \in S} P(s) * I(s)$ se corresponde con la información promedio que aporta cada símbolo a la fuente. Por lo cual, los símbolos cuya cantidad de información sea mas baja que la entropía son muy predecibles ya que apareceran muchas veces y, por ejemplo, si tuviera que asignarle otro símbolo a cada uno de ellos, me convendría representarlos con menos bits para disminuir la longitud promedio del código. \\
+Ahora, para analizar los datos, planteamos histogramas donde podemos ver la cantidad de información $I(s) = -log_2(P(s))$ que aporta cada símbolo de la fuente. Luego lo comparamos con la entropía y definimos los \emph{protocolos distinguidos} como los que son mas bajos que la entropía. Esto lo hicimos porque según la fórmula de Shannon, la entropía $\sum\limits_{s \in S} P(s) * I(s)$ se corresponde con la información promedio que aporta cada símbolo a la fuente. Por lo cual, los símbolos cuya cantidad de información sea mas baja que la entropía son muy predecibles ya que aparecerán muchas veces y, por ejemplo, si tuviera que asignarle otro símbolo a cada uno de ellos, me convendría representarlos con menos bits para disminuir la longitud promedio del código. \\
 
 Los resultados fueron los siguientes: \\
 
@@ -119,10 +119,9 @@ Los resultados fueron los siguientes: \\
 
 % Discusion ------------------------------------
 
-Por lo que podemos ver, la incidencia de ARP es muy baja en el Dataset 1 ya que en una biblioteca hay poco recambio de dispositivos y pocos hosts, lo cual hace que la incidencia de ARP sea menor. En cambio, si hay muchos mas paquetes IP, lo cual tiene sentido porque es el protocolo que todos los hosts usan para conectarse a internet. Entonces como podemos ver, el unico símbolo predecible menor que la entropía es el de IP, el cual es el único protocolo distinguido en este dataset. \\
+Por lo que podemos ver, la incidencia de ARP es muy baja en el Dataset 1 ya que en una biblioteca hay poco recambio de dispositivos y pocos hosts, lo cual hace que la incidencia de ARP sea menor. En cambio, si hay muchos mas paquetes IP, lo cual tiene sentido porque es el protocolo que todos los hosts usan para conectarse a internet. Entonces como podemos ver, el único símbolo predecible menor que la entropía es el de IP, el cual es el único protocolo distinguido en este dataset. \\
 
 En el segundo Dataset, ya podemos hablar de una red (el Laboratorio de Computación) en la cual no solamente hay muchos mas hosts, sino el recambio de dispositivos que entran y se van de la red es mayor, por lo cual la incidencia de ARP sube. A su vez, IP sigue siendo el protocolo más usado al igual que en el dataset anterior. Tanto la información que aporta ARP como IP superan la entropía de la fuente de información S, por eso ambos son en este caso protocolos distinguidos. \\
-
 % end subsection
 
 \subsection{Experimento incidencia de ARP}
