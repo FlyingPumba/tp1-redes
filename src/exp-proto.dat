@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 IP / TCP 172.217.28.36:https > 10.210.31.23:61720 PA / Raw
 IP / TCP 172.217.28.36:https > 10.210.31.23:61720 FA
 IP / TCP 10.210.31.23:61720 > 172.217.28.36:https A
@@ -2796,3 +2797,5 @@ ARP who has 10.2.5.10 says 10.2.5.254 / Padding
 IPv6 / UDP fe80::c407:fe9e:94cc:91c8:dhcpv6_client > ff02::1:2:dhcpv6_server / DHCP6_Solicit / DHCP6OptElapsedTime / DHCP6OptClientId / DHCP6OptIA_NA / DHCP6OptClientFQDN / DHCP6OptVendorClass / DHCP6OptOptReq
 IPv6 / UDP fe80::46a4:2dff:fe01:cd7f:dhcpv6_client > ff02::1:2:dhcpv6_server / DHCP6_InfoRequest / DHCP6OptClientId / DHCP6OptElapsedTime / DHCP6OptOptReq
 IP / UDP 10.2.203.184:57621 > 10.2.203.255:57621 / Raw
+=======
+>>>>>>> 7b87e3ed2b64657a8220664949898a66883282f5
