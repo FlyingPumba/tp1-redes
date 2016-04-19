@@ -16,11 +16,12 @@ def entropiaEthernet(pkt):
     global types
     if Ether in pkt:
         s = pkt.getlayer(1).summary().partition(' ')[0]
-        print ">> {0}".format(pkt.summary())
-        if exp == "exp-proto":
-            with open("exp-proto.dat","a+") as f:
-                f.write(pkt.getlayer(1).summary()+"\n")
-        types.append(s)
+        if (s == "IP" or s == "IPv6" or s == "ARP"):
+            print ">> {0}".format(pkt.summary())
+            if exp == "exp-proto":
+                with open("exp-proto.dat","a+") as f:
+                    f.write(pkt.getlayer(1).summary()+"\n")
+            types.append(s)
 
 nodos_dst = []
 nodos_src = []
