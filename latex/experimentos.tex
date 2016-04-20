@@ -9,12 +9,10 @@ En esta sección desarrollaremos y mostraremos los resultados de los experimento
 Para realizar estos experimentos analizaremos los siguientes datasets, cada uno tomado en circunstancias diferentes:
 
 \begin{itemize}
-\item Dataset 1: Biblioteca pabellón 2 (wifi) a las 3pm, captura de 10 minutos
-\item Dataset 2: Laboratorios pabellón 1 (wifi) a las 5pm, captura de 10 minutos
-\item Dataset 3: Hogar de uno de los integrantes del grupo, sin ningun otro dispositivo(wifi) a las 12am, captura de 15 minutos
-\item Dataset 4: Hogar de uno de los integrantes del grupo, con más dispositivos conectados a la red(wifi) a las 12:20pm, captura de 15 minutos
-\item Dataset 5: Red de un Starbucks(wifi), captura de 10 minutos
-\item Dataset 6: Red de la Biblioteca Noriega del pabellón 1(wifi), captura de 30 minutos
+\item Dataset Biblioteca pabellón 2 (wifi) a las 3pm, captura de 10 minutos
+\item Dataset Laboratorios pabellón 1 (wifi) a las 5pm, captura de 10 minutos
+\item Dataset Red de un Starbucks(wifi), captura de 10 minutos
+\item Dataset Red de la Biblioteca Noriega del pabellón 1(wifi), captura de 10 minutos
 \end{itemize}
 
 
@@ -37,7 +35,7 @@ Los resultados fueron los siguientes: \\
     enlarge y limits=false,
     ymin=0,
     xtick=data,
-    xlabel= {Dataset Biblioteca Pabellon 2},
+    xlabel= {Dataset Biblioteca Pabellón 2},
     ylabel= {Probabilidad},
     symbolic x coords={IPv6,ARP,IP},
     point meta={y*100}, %y-Werte mal 100 für Prozent
@@ -60,8 +58,8 @@ Los resultados fueron los siguientes: \\
 \begin{tikzpicture}
 \begin{axis}[
     symbolic x coords={IPv6,ARP,IP},
-        ylabel = {Informacion del simbolo},
-        xlabel = {Dataset Biblioteca Pabellon 2},
+        ylabel = {Información del símbolo},
+        xlabel = {Dataset Biblioteca Pabellón 2},
         xtick=data,
         ymin=0]
     \addplot[ybar,fill=white] coordinates {
@@ -108,7 +106,7 @@ Los resultados fueron los siguientes: \\
 \begin{tikzpicture}
 \begin{axis}[
     symbolic x coords={IPv6,ARP,IP},
-        ylabel = {Informacion del simbolo},
+        ylabel = {Información del símbolo},
         xlabel = {Dataset Laboratorios},
         xtick=data,
         ymin=0]
@@ -157,7 +155,7 @@ Los resultados fueron los siguientes: \\
 \begin{tikzpicture}
 \begin{axis}[
     symbolic x coords={LLC,IPv6,ARP,IP},
-        ylabel = {Informacion del simbolo},
+        ylabel = {Información del símbolo},
         xlabel = {Dataset Starbucks},
         xtick=data,
         ymin=0]
@@ -208,7 +206,7 @@ Los resultados fueron los siguientes: \\
 \begin{tikzpicture}
 \begin{axis}[
     symbolic x coords={LLC,IPX,IPv6,ARP,IP},
-        ylabel = {Informacion del simbolo},
+        ylabel = {Información del símbolo},
         xlabel = {Dataset Noriega},
         xtick=data,
         ymin=0]
@@ -225,7 +223,7 @@ Los resultados fueron los siguientes: \\
 
 % Discusion ------------------------------------
 
-Por lo que podemos ver, la incidencia de ARP es muy baja en el primer Dataset ya que en una biblioteca hay poco recambio de dispositivos y pocos hosts, lo cual hace que la incidencia de ARP sea menor. En cambio, si hay muchos mas paquetes IP, lo cual tiene sentido porque es el protocolo que todos los hosts usan para conectarse a internet. Entonces como podemos ver, el único símbolo predecible menor que la entropía es el de IP. Es importante aclarar que en este Dataset observamos un comportamiento que en las demás capturas no sucedio: por cada paquete ARP "who-has" vemos inmediatamente otro ARP "is-at", lo cual sugiere una topología o funcionamiento distinto (sin embargo, todas las capturas fueron realizadas bajo las mismas condiciones).\\
+Por lo que podemos ver, la incidencia de ARP es muy baja en el primer Dataset ya que en una biblioteca hay poco recambio de dispositivos y pocos hosts, lo cual hace que la incidencia de ARP sea menor. En cambio, si hay muchos mas paquetes IP, lo cual tiene sentido porque es el protocolo que todos los hosts usan para conectarse a internet. Por su parte, IPv6 tiene menor incidencia que IP (y también ARP), se lo atribuimos a que esta versión de IP es menos usada. Entonces como podemos ver, el único símbolo predecible menor que la entropía es el de IP. Es importante aclarar que en este Dataset observamos un comportamiento que en las demás capturas no sucedio: por cada paquete ARP "who-has" vemos inmediatamente otro ARP "is-at", lo cual sugiere una topología o funcionamiento distinto (sin embargo, todas las capturas fueron realizadas bajo las mismas condiciones).\\
 
 En el segundo Dataset, ya podemos hablar de una red (el Laboratorio de Computación) en la cual no solamente hay muchos mas hosts, sino el recambio de dispositivos que entran y se van de la red es mayor, por lo cual la incidencia de ARP sube. A su vez, IP sigue siendo el protocolo más usado al igual que en el dataset anterior. \\
 
@@ -255,11 +253,18 @@ Finalmente, si definimos que un protocolo se distingue de otro según la cantida
 
 Usaremos la misma forma de medir que describimos en el ejercicio anterior para poder observar la incidencia de paquetes ARP en la red voy a utilizar una serie de muestras
 tomadas de distintas redes y graficarlas en un histograma, después de mostrar los resultados daremos una explicación del por que de los mismo. Aclaración: todas las capturas
-son de 15 minutos.
+son de 15 minutos.\\
+
+Usamos dos datasets exlusivos para poder observar el comportamiento de redes más controladas bajo la hipótesis de que entre más hosts hay más incidencia de paquetes ARP en la red.\\
+
+\begin{itemize}
+\item Dataset Hogar de uno de los integrantes del grupo, sin ningun otro dispositivo(wifi) a las 12am, captura de 15 minutos
+\item Dataset Hogar de uno de los integrantes del grupo, con más dispositivos conectados a la red(wifi) a las 12:20pm, captura de 15 minutos 
+\end{itemize}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=90mm]{imagenes/IncidenciaARP.jpg}
+\includegraphics[width=150mm]{imagenes/IncidenciaARP.jpg}
 \caption{Comparación de porcentaje de apariciones de ARP en distintas redes o con distintas condiciones.\label{overflow}}
 \end{figure}
 
