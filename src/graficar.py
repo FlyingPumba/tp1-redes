@@ -25,7 +25,6 @@ if __name__ == "__main__":
 
 	edges = {}
 	nodes_dst = {}
-	nodes_src = {}
 	lista_nodos_dst = []
 	total_pkts = 0
 	for pkt in p:
@@ -33,10 +32,12 @@ if __name__ == "__main__":
 			total_pkts += 1
 			dst = pkt[ARP].pdst
 			src = pkt[ARP].psrc
+			especial = "10.2.0.187"
+			if dst == especial:
+				print "Fuente de " + especial + " es " + src
 			lista_nodos_dst.append(dst)
 			inc(edges, (src,dst))
 			inc(nodes_dst, dst)
-			inc(nodes_src, src)
 
 	g = nx.DiGraph()
 	for comm, peso in edges.iteritems():
@@ -54,18 +55,22 @@ if __name__ == "__main__":
 
 	print ""
 	node_color = []
+	node_label = {}
 	entropia = calcularEntropia(lista_nodos_dst)
+	last_label = 1
 	for ip in g:
 		if ip in nodes_dst:
 			proba = float(nodes_dst[ip])/float(total_pkts)
-			info = proba * (- math.log(proba)/math.log(2))
+			info = - math.log(proba)/math.log(2)
 			if info < entropia: # si la informacion de la ip es menor de la entropia es distinguido
-				print "IP {0} tiene informacion: {1}, debajo de la entropia".format(ip, info)
-				node_color.append(1)
+				node_color.append('red')
+				node_label[ip] = last_label
+				print "IP {0} tiene informacion: {1}, debajo de la entropia y su label es: {2}".format(ip, info, last_label)
+				last_label += 1
 			else:
-				node_color.append(0)
+				node_color.append('cyan')
 		else:
-			node_color.append(0)
+			node_color.append('cyan')
 
 	graphviz_prog = ['twopi', 'gvcolor', 'wc', 'ccomps', 'tred', 'sccmap', 'fdp', 'circo', 'neato', 'acyclic', 'nop', 'gvpr', 'dot', 'sfdp']
 	# grafico
@@ -76,6 +81,9 @@ if __name__ == "__main__":
 		node_size=node_size,
 		node_color=node_color,
 		alpha=0.7,
-		edge_color='g'
+		edge_color='grey',
+		arrows=False
 		)
-	plt.show()
+	nx.draw_networkx_labels(g, pos, node_label)
+	aux = f.split('.')
+	plt.savefig(aux[0] + ".png")

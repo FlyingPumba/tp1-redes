@@ -276,7 +276,7 @@ Por último tenemos dos mediciones realizadas en la biblioteca Noriega y un Star
 gente entrando y saliendo, muchos de ellos se quedan a usar las instalaciones para estudiar con sus celulares y computadoras portatiles. En el Starbucks notamos que era menos
 común cuando se realizo las mediciones.\\
 
-La conclusión que podemos sacar es que si bien estas muestras pertenecen a distintos lugares y horarios podemos ver como el tráfico de paquetes ARP es más significativo cuando 
+La conclusión que podemos sacar es que si bien estas muestras pertenecen a distintos lugares y horarios podemos ver como el tráfico de paquetes ARP es más significativo cuando
 la red tiende a obtener nuevos hosts con más constancia.
 
 % end subsection
@@ -284,15 +284,162 @@ la red tiende a obtener nuevos hosts con más constancia.
 
 \subsection{Experimento nodos distinguidos}
 
-Para distinguir los nodos de una red, analizaremos la \texttt{IP} fuente y destino de los paquetes \texttt{ARP Who-Has}.
-No utilizaremos otros paquetes distintos de \texttt{ARP}, ya que queremos restringirnos a las comunicaciones internas de la subred.
+Para distinguir los nodos de una red, tomaremos como fuente de información $S_1$ el campo
+\texttt{IP} \textit{destino} de los paquetes \texttt{ARP Who-Has}.
+
+No utilizaremos otros paquetes distintos de \texttt{ARP}, ya que queremos restringirnos a las comunicaciones internas de la subred. \\
+
+Similar a como hicimos en el experimento de protocolos distinguidos, contamos la cantidad de apariciones de cada dirección \texttt{IP} en el campo destino de los paquetes \texttt{ARP Who-Has}, para luego calcular la probabilidad de aparición de cada \texttt{IP} en base a la cantidad total de paquetes capturados.
+
+Usando esta probabilidad, calculamos la entropía y la comparamos con la información que aporta cada símbolo de $S_1$.\\
+
+En este sentido, es interesante hacer notar que es muy probable que el Gateway de una red vaya a ser un nodo distinguido,
+    ya que los otros nodos buscan enviarle información a su  \texttt{IP} constantemente.
+
+% Ahora, para interpretar los datos, planteamos histogramas donde podemos ver la cantidad de información que aporta cada símbolo de la fuente. Luego los comparamos con la entropía porque, según lo que explicamos en la introducción, los símbolos cuya cantidad de información es mas baja que la entropía son muy predecibles y aparecerán muchas veces. \\
+
+A continuación mostramos los resultados para varios datasets. Se presentan:
 
 \begin{itemize}
-    \item Diremos que un nodo es \textbf{distinguido como destino}, si la probabilidad de que sea destino en un paquete \texttt{Who-Has} es alta (que signfica alta?).
-
-        En esta categoria, podríamos conjeturar que el Gateway de una red va a ser un nodo distinguido como destino,
-        ya que los otros nodos buscan enviarle información a su IP constantemente.
-    \item Diremos que un nodo es \textbf{distinguido como fuente}, si la probabilidad de que sea fuente en un paquete \texttt{Who-Has} es alta (que signfica alta?).
-
-        En esta categoria, un nodo tendría que enviar muchos más paquetes que el resto para distinguirse como fuente.
+    \item Un grafo que permite visualizar la topología del dataset en cuestión. Los nodos en rojo son los distinguidos, es decir que su información es menor a la entropía de la fuente.
+    \item La entropia.
+    \item La cantidad de símbolos.
+    \item Los nodos distinguidos.
 \end{itemize}
+
+\subsubsection{Aulas DC}
+
+La topología de la red Aulas DC es la siguiente:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{imagenes/aulasDC.png}
+    \caption{Topología de la red para el Dataset Aulas DC}
+\end{figure}
+
+La \textbf{entropia} de la fuente es: 4.98
+
+La \textbf{cantidad símbolos} es: 101
+
+Los \textbf{nodos distinguidos} son:
+
+\begin{itemize}
+    \item Con etiqueta 1: 10.2.6.250 tiene informacion 4.11
+    \item Con etiqueta 2: 10.2.203.254 tiene informacion 2.53
+    \item Con etiqueta 3: 10.2.2.205 tiene informacion 4.48
+    \item Con etiqueta 4: 10.2.1.230 tiene informacion 4.70
+    \item Con etiqueta 5: 10.2.1.254 tiene informacion 3.91
+    \item Con etiqueta 6: 10.2.2.254 tiene informacion 2.62
+\end{itemize}
+
+En esta red encontramos la particularidad de que hay 2 nodos distinguidos que tienen
+una cantidad de apariciones en la \texttt{IP} \textit{destino} muy parecida.
+La \texttt{IP} 10.2.203.254 tiene 81 apariciones mientras que la \texttt{IP} 10.2.2.254 tiene 76 apariciones.
+
+Además, notese dichos nodos aparecen como dos componentes diferentes en el grafo que no hablan entre si,
+lo que podría sugerir que la \texttt{IP} 10.2.203.254 es el \textit{Gateway} de la red
+y la \texttt{IP} 10.2.2.254 podría ser un Switch.
+
+\subsubsection{Laboratorios DC}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{imagenes/labosDC.png}
+    \caption{Topología de la red para el Dataset Laboratorios DC}
+\end{figure}
+
+La \textbf{entropia} de la fuente es: 6.19
+
+La \textbf{cantidad símbolos} es: 275
+
+Los \textbf{nodos distinguidos} son:
+
+\begin{itemize}
+    \item Con etiqueta 1: 10.2.7.249 tiene informacion 5.34
+    \item Con etiqueta 2: 10.2.7.254 tiene informacion 5.32
+    \item Con etiqueta 3: 10.2.7.250 tiene informacion 4.35
+    \item Con etiqueta 4: 10.2.203.27 tiene informacion 3.86
+    \item Con etiqueta 5: 10.2.3.230 tiene informacion 5.86
+    \item Con etiqueta 6: 10.2.203.254 tiene informacion 3.10
+    \item Con etiqueta 7: 10.2.1.230 tiene informacion 3.91
+    \item Con etiqueta 8: 10.2.0.67 tiene informacion 5.24
+    \item Con etiqueta 9: 10.2.0.64 tiene informacion 5.34
+    \item Con etiqueta 10: 10.2.0.65 tiene informacion 5.34
+    \item Con etiqueta 11: 169.254.255.255 tiene informacion 5.95
+    \item Con etiqueta 12: 169.254.231.139 tiene informacion 5.24
+    \item Con etiqueta 13: 10.2.1.254 tiene informacion 3.94
+    \item Con etiqueta 14: 10.2.0.187 tiene informacion 4.77
+\end{itemize}
+
+En esta red está claro que el \textit{Gateway} es la \texttt{IP} 10.2.203.254, debido a que
+supera ampliamente a los demás nodos distinguidos.
+
+Las particularidades a mencionar son:
+\begin{itemize}
+    \item La cantidad de nodos distinguidos es alta, lo cual lo atribuimos a la alta
+        cantidad de \texttt{IPs} distintas.
+        Dichos nodos asumimos que representan diferentes Switches en la red.
+    \item Cabe destacar que el nodo distinguido con \texttt{IP} 10.2.0.187 (etiqueta 14)
+        no se comunica con ningún otro nodo de la red. Al analizar los paquetes \texttt{ARP} que lo nombraban como
+        destino, observamos que la fuente es la misma \texttt{IP}. No pudimos encontrar una explicación razonable para
+        esto.
+    \item Encontramos 2 nodos distinguidos (169.254.231.139 y 169.254.255.255) que no
+        se encuentran en la subnet, lo cual tampoco pudimos explicar.
+    \item Nos causó curiosidad ver que esta red tenía el mismo \textit{Gateway} que la red
+        Aulas DC. Al investigar, vimos que ambas redes tenían el mismo DNS y dominio, por lo que suponemos
+        que en el fondo son la misma red con dos nombres distintos.
+\end{itemize}
+
+\subsubsection{Biblioteca Noriega}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{imagenes/noriega.png}
+    \caption{Topología de la red para el Dataset Biblioteca Noriega}
+\end{figure}
+
+La \textbf{entropia} de la fuente es: 5.91
+
+La \textbf{cantidad símbolos} es: 110
+
+Los \textbf{nodos distinguidos} son:
+
+\begin{itemize}
+    \item Con etiqueta 1: 10.255.255.254 tiene informacion 4.13
+    \item Con etiqueta 2: 157.92.15.199 tiene informacion 2.66
+    \item Con etiqueta 3: 157.92.15.133 tiene informacion 4.35
+    \item Con etiqueta 4: 157.92.15.136 tiene informacion 5.45
+\end{itemize}
+
+En esta red está claro que el \textit{Gateway} es la \texttt{IP} 157.92.15.199, debido a que
+supera ampliamente a los demás nodos distinguidos.
+
+Las particularidades a mencionar son:
+\begin{itemize}
+    \item Los nodos con etiqueta 3 y 4 (157.92.15.133 y 157.92.15.136) suponemos
+        que son Switches que particionan la red, evitando conflictos.
+    \item  Se vuelve a presentar el caso de una \texttt{IP} que está fuera de la red: 10.255.255.254, que tiene la particularidad de estar muy aislado de los otros nodos.
+\end{itemize}
+
+
+
+\subsubsection{Starbucks}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{imagenes/starbucks.png}
+    \caption{Topología de la red para el Dataset Starbucks}
+\end{figure}
+
+La \textbf{entropia} de la fuente es: 3.51
+
+La \textbf{cantidad símbolos} es: 32
+
+Los \textbf{nodos distinguidos} son:
+
+\begin{itemize}
+    \item Con etiqueta 1: 10.254.70.1 tiene informacion 1.21
+\end{itemize}
+
+En esta red está claro que el \textit{Gateway} es la \texttt{IP} 10.254.70.1, debido a que
+es el único nodo distinguido.

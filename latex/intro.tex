@@ -6,8 +6,6 @@ Basándonos en la teoría de la información de Shannon y con los paquetes obten
   \item $S = \{s_{1} \dots s_{n}\}$, donde $s_{i}$ es el valor del campo \emph{type} de cada paquete \texttt{Ethernet} de capa 2.
   \item $S_{1} = \{s_{1} \dots s_{n}\} $, donde $s_i$ es el valor del campo \emph{destino} (IP) de cada paquete de
   tipo \texttt{ARP} Who-Has.
-  \item $S_{2} = \{s_{1} \dots s_{n}\} $, donde $s_i$ es el valor del campo \emph{fuente} (IP) de cada paquete de
-  tipo \texttt{ARP} Who-Has.
 \end{itemize}
 
 Es necesario aclarar que los paquetes \texttt{ARP}, el cual es un protocolo de capa 2.5, se utilizan para encontrar direcciones \texttt{MAC} (direcciones de capa 2) asociadas a cada \texttt{IP} (direcciones de capa 3). El procedimiento por el cual un host envía un paquete \texttt{ARP} se inicia cuando el host quiere enviar un paquete a una dirección IP, la cual se encuentra dentro de su red local, y no esta listada dentro de su tabla de traducciones de direcciones \texttt{MAC-IP}. Luego el host envía un paquete \texttt{ARP} de tipo Who-Has broadcast, dentro de su red local, para determinar la dirección \texttt{MAC} del host destino. El host con la dirección \texttt{IP} solicitada responde únicamente al host fuente con su dirección \texttt{MAC}, utilizando un paquete \texttt{ARP} de tipo Is-At.
