@@ -1,3 +1,8 @@
+### Dependencias
+`sudo pip install scapy`
+`sudo apt-get install python-pygraphviz`
+`sudo pip install networkx`
+
 ### Capturar paquetes
 Para hacer una captura de paquetes, ejecutar: `sudo ./capture.py <interface> <segundos>`.
 El archivo se guarda como "captura.pcap"
