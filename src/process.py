@@ -21,28 +21,11 @@ def entropiaEthernet(pkt):
         types.append(s)
 
 nodos_dst = []
-nodos_src = []
 def nodosDistinguidos(pkt):
     if ARP in pkt:
         print ">> {0}".format(pkt.summary())
         if pkt[ARP].op == 1: #who-has
             nodos_dst.append(pkt[ARP].pdst)
-            nodos_src.append(pkt[ARP].psrc)
-
-hosts = set()
-def hostsArp(pkt):
-    if ARP in pkt:
-        print ">> {0}".format(pkt.summary())
-        if pkt[ARP].op == 1:
-            #who-has
-            # print pkt.sprintf("%ARP.hwsrc%")
-            # %ARP.psrc% %ARP.pdst%"
-            hosts.add(pkt[ARP].hwsrc)
-        else:
-            #reply
-            # print pkt.sprintf("%ARP.hwdst%")
-            # %ARP.psrc% %ARP.pdst%"
-            hosts.add(pkt[ARP].hwdst)
 
 def calcularEntropia(lista):
     elementosDistintos = {}
@@ -86,22 +69,16 @@ if __name__ == "__main__":
     if len(sys.argv) < 2:
         print ''
         print "Usage: " + sys.argv[0] + " <*.cap> <exp>"
-        print "\tDonde <exp> puede ser: \"entropia-tipos\", \"exp-proto\", \"exp-nodos\", \"nodos-ARP\""
+        print "\tDonde <exp> puede ser: \"exp-proto\", \"exp-nodos\""
     elif len(sys.argv) > 2:
         archivo = sys.argv[1]
         exp = sys.argv[2]
-        if exp == "entropia-tipos":
-            sniff(offline = archivo, prn = entropiaEthernet)
-            calcularEntropia(types)
-        elif exp == "exp-proto":
+        if exp == "exp-proto":
             p = sniff(offline = archivo, prn = entropiaEthernet)
             calcularEntropia(types)
         elif exp == "exp-nodos":
             p = sniff(offline = archivo, prn = nodosDistinguidos)
             print "Entropia destino paquetes ARP Who Has"
             calcularEntropia(nodos_dst)
-            print "Entropia fuente paquetes ARP Who Has"
-            calcularEntropia(nodos_src)
-        elif exp == "nodos-ARP":
-            sniff(offline = archivo, prn = hostsArp)
-            print hosts
+        else:
+            print "Experimento invalido"
