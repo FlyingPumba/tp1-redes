@@ -1,6 +1,7 @@
 #! /usr/bin/env python
 import sys
 import time
+import operator
 from scapy.all import *
 
 def getLayersList(pkt):
@@ -60,16 +61,13 @@ def calcularEntropia(lista):
     print elementosDistintos
     for elem, apariciones in elementosDistintos.iteritems():
         proba = float(apariciones)/float(len(lista))
-        print "Simbolo {0} tiene probabilidad {1}".format(elem, proba)
-        if exp == "exp-proto":
-            with open("exp-proto.dat","a+") as f:
-                f.write("Simbolo {0} tiene probabilidad {1}\n".format(elem, proba))
+        elementosDistintos[elem] = proba
         entropia += proba * (- math.log(proba)/math.log(2))
 
+    sorted_elems = sorted(elementosDistintos.items(), key=operator.itemgetter(1), reverse=True)
+    for tupla in sorted_elems:
+        print "Simbolo {0} tiene probabilidad {1}".format(tupla[0], tupla[1])
     print "\nLa entropia de la fuente es {0}".format(entropia)
-    if exp == "exp-proto":
-        with open("exp-proto.dat","a+") as f:
-            f.write("La entropia de la fuente es {0} \n".format(entropia))
 
 exp = ""
 if __name__ == "__main__":

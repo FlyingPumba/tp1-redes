@@ -9,5 +9,5 @@ if __name__ == "__main__":
     else:
         interface = sys.argv[1]
         tiempo = int(sys.argv[2])
-        p = sniff(iface = interface, timeout = tiempo)
+        p = sniff(iface = interface, timeout = tiempo, prn = lambda x:x.summary())
         wrpcap("captura.cap", p)

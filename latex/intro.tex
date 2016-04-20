@@ -1,8 +1,15 @@
-La problematica de este trabajo práctico fue implementar una herramienta para escuchar a la red y analisar los datos que obteniamos. A la vez, con esos datos propusimos diferentes
-fuentes de información para las cuales calculamos la incidencia de cada simbolo de la fuente(mayoritariamente distinguidos por protocolos y nodos) y la entropía entre otras 
-cosas. 
+En este trabajo práctico nos proponemos analizar redes de información con el objetivo de puntualizar diversos aspectos analiticos de las mismas. Para lograr tal fin, utilizamos la herramienta \textit{Scapy}, la cual nos provee de una función llamada \texttt{sniff}. Esta función nos permite capturar todos los paquetes de la red en la cual nos encontramos durante un período de tiempo determinado.
 
-Usamos el lenguaje de programación Python y su librería Scapy para llevar a cabo el sniffeo de la red. 
+Basandonos en la teoría de la información de Shannon y con los paquetes obtenidos, definimos tres fuente de información, $S$, $S_{1}$ y $S_{2}$, donde:
 
-Aprovechamos estas herramientas para realizar varios experimentos en distintos lugares y condiciones de las redes. A partir de los datos adquiridos generamos gráficos que representan
-el comportamiento de la red y discutimos sus caracteristicas.
+\begin{itemize}
+  \item $S = \{s_{1} \dots s_{n}\}$, donde $s_{i}$ es el valor del campo \emph{type} de cada paquete.
+  \item $S_{1} = \{s_{1} \dots s_{n}\} $, donde $s_i$ es el valor del campo \emph{destino} (IP) cada paquete de
+  de tipo ARP Who-Has.
+  \item $S_{2} = \{s_{1} \dots s_{n}\} $, donde $s_i$ es el valor del campo \emph{fuente} (IP) cada paquete de
+  de tipo ARP Who-Has.
+\end{itemize}
+
+Es necesario aclarar que los paquetes \texttt{ARP}, el cual es un protocolo de capa 2.5, se utilizan para encontrar direcciones \texttt{MAC} (direcciones de capa 2) asociadas a cada \texttt{IP} (direcciones de capa 3).
+
+El procedimiento por el cual un host envía un paquete \texttt{ARP} se inicia cuando el host quiere enviar un paquete a una dirección IP, la cual se encuentra dentro de su red, y no esta listada dentro de su tabla de traducciones de direcciones \texttt{MAC-IP}. Luego el host envía un paquete who-has broadcast para determinar la dirección \texttt{MAC} del host destino. El host con la dirección \texttt{IP} solicitada responde unicamente al host fuente con su direccion \texttt{MAC}, utilizando un paquete \texttt{ARP} de tipo is-at.
