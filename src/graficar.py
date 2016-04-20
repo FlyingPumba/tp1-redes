@@ -47,11 +47,12 @@ if __name__ == "__main__":
 	for ip in g:
 		if ip in nodes_dst:
 			size = float(nodes_dst[ip]) / float(total_pkts) * 5000 + 50
-			print size
+			print "IP {0} tiene peso: {1}".format(ip, size)
 			node_size.append(size)
 		else:
 			node_size.append(30)
 
+	print ""
 	node_color = []
 	entropia = calcularEntropia(lista_nodos_dst)
 	for ip in g:
@@ -59,6 +60,7 @@ if __name__ == "__main__":
 			proba = float(nodes_dst[ip])/float(total_pkts)
 			info = proba * (- math.log(proba)/math.log(2))
 			if info < entropia: # si la informacion de la ip es menor de la entropia es distinguido
+				print "IP {0} tiene informacion: {1}, debajo de la entropia".format(ip, info)
 				node_color.append(1)
 			else:
 				node_color.append(0)
