@@ -258,15 +258,15 @@ Finalmente, si definimos que un protocolo se distingue de otro según la cantida
 
 \subsection{Experimento incidencia de ARP}
 
-Usaremos la misma forma de medir que describimos en el ejercicio anterior para poder observar la incidencia de paquetes \texttt{ARP} en la red voy a utilizar una serie de muestras
-tomadas de distintas redes y graficarlas en un histograma, después de mostrar los resultados daremos una explicación del por que de los mismo. Aclaración: todas las capturas
-son de 15 minutos.\\
+Para poder observar la incidencia de paquetes \texttt{ARP} en la red, vamos a utilizar una serie de muestras tomadas de distintas redes y graficarlas en un histograma, 
+después de mostrar los resultados daremos una explicación del por que de los mismo. Aclaración: todas las capturas son de 15 minutos.\\
 
-Usamos dos datasets exlusivos para poder observar el comportamiento de redes más controladas bajo la hipótesis de que entre más hosts hay más incidencia de paquetes ARP en la red.\\
+Usamos dos datasets exlusivos para poder observar el comportamiento de redes más controladas, bajo la hipótesis de que entre más hosts hay más incidencia de paquetes ARP 
+en la red.\\
 
 \begin{itemize}
-\item Dataset Hogar de uno de los integrantes del grupo, sin ningun otro dispositivo(wifi) a las 12am, captura de 15 minutos
-\item Dataset Hogar de uno de los integrantes del grupo, con más dispositivos conectados a la red(wifi) a las 12:20pm, captura de 15 minutos
+\item \texttt{Dataset} Hogar de uno de los integrantes del grupo, sin ningun otro dispositivo(wifi) a las 12am, captura de 15 minutos
+\item \texttt{Dataset} Hogar de uno de los integrantes del grupo, con más dispositivos conectados a la red(wifi) a las 12:20pm, captura de 15 minutos
 \end{itemize}
 
 \begin{figure}[H]
@@ -275,7 +275,7 @@ Usamos dos datasets exlusivos para poder observar el comportamiento de redes má
 \caption{Comparación de porcentaje de apariciones de ARP en distintas redes o con distintas condiciones.\label{overflow}}
 \end{figure}
 
-Como podemos ver la red de los laboratorios tiene más porcentaje de paquetes \texttt{ARP} que el de la biblioteca. Esto se debe a que en el laboratorio del pabellón 1 ingresan
+Como podemos ver, la red de los laboratorios tiene más porcentaje de paquetes \texttt{ARP} que el de la biblioteca. Esto se debe a que en el laboratorio del pabellón 1 ingresan
 constantemente personas y, por lo tanto, la mayoría de ellos ingresan en la red a través de las computadoras del mismo o usando el wifi de estos con sus celulares. Esto
 ocurre en menor medida en la biblioteca ya que no se usan computadoras que no sean propias de los que ingresan y, por lo tanto, hay mucho más tráfico de paquetes \texttt{ARP} en la red
 de los laboratorios. Además al estar en una red privada, es más común que se efectúen envíos de mensajes entre computadoras y los routers de las mismas.\\
@@ -288,8 +288,8 @@ Por último tenemos dos mediciones realizadas en la biblioteca Noriega y un Star
 gente entrando y saliendo, muchos de ellos se quedan a usar las instalaciones para estudiar con sus celulares y computadoras portatiles. En el Starbucks notamos que era menos
 común cuando se realizo las mediciones.\\
 
-La conclusión que podemos sacar es que si bien estas muestras pertenecen a distintos lugares y horarios podemos ver como el tráfico de paquetes \texttt{ARP} es más significativo cuando
-la red tiende a obtener nuevos hosts con más constancia.
+La conclusión que podemos sacar es que, si bien estas muestras pertenecen a distintos lugares y horarios, podemos ver como el tráfico de paquetes \texttt{ARP} es más significativo cuando
+la red tiende a recibir nuevos hosts con más constancia.
 
 % end subsection
 
