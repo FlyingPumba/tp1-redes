@@ -6,21 +6,22 @@ En esta sección desarrollaremos y mostraremos los resultados de los experimento
 \item Los nodos distinguidos.
 \end{itemize}
 
-Para realizar estos experimentos analizaremos los siguientes datasets, cada uno tomado en circunstancias diferentes:
-
-\begin{itemize}
-\item Dataset Biblioteca pabellón 2 (wifi), captura de 15 minutos
-\item Dataset Laboratorios pabellón 1 (wifi), captura de 15 minutos
-\item Dataset Red de un Starbucks(wifi), captura de 15 minutos
-\item Dataset Red de la Biblioteca Noriega del pabellón 1(wifi), captura de 15 minutos
-\end{itemize}
-
-
 \subsection{Experimento protocolos distinguidos}
 
 Para analizar los protocolos distinguidos fuimos guardando los resultados de sniffear diferentes redes y tomar como fuente de información S el campo .type de los paquetes que se fueron procesando. De ahí calculamos la cantidad de apariciones de cada protocolo, la probabilidad de aparición de cada protocolo, calculamos la entropía y la comparamos con la información que aporta cada símbolo de S.\\
 
 Ahora, para interpretar los datos, planteamos histogramas donde podemos ver la cantidad de información que aporta cada símbolo de la fuente. Luego los comparamos con la entropía porque, según lo que explicamos en la introducción, los símbolos cuya cantidad de información es mas baja que la entropía son muy predecibles y aparecerán muchas veces. \\
+
+\vspace{0.5em}
+
+Los datasets utilizados en este experimento fueron:
+
+\begin{itemize}
+    \item Dataset Biblioteca pabellón 2 (wifi), captura de 15 minutos
+    \item Dataset Laboratorios pabellón 1 (wifi), captura de 15 minutos
+    \item Dataset Red de un Starbucks(wifi), captura de 15 minutos
+    \item Dataset Red de la Biblioteca Noriega del pabellón 1(wifi), captura de 15 minutos
+\end{itemize}
 
 Los resultados fueron los siguientes: \\
 
@@ -237,9 +238,11 @@ Analizando el cuarto Dataset (Noriega), vemos un nuevo protocolo: \texttt{IPX} (
 
 Si tomamos la cantidad total de paquetes de cada protocolo en cada captura y la dividimos por el total de paquetes capturados, vemos la siguiente proporción: \\
 
-\begin{tikzpicture}
-    \pie[radius=5]{81/IP, 9/IPv6, 8/ARP, 1.7/LLC, 0.3/IPX}
-\end{tikzpicture}
+\begin{center}
+    \begin{tikzpicture}
+        \pie[radius=5]{81/IP, 9/IPv6, 8/ARP, 1.7/LLC, 0.3/IPX}
+    \end{tikzpicture}
+\end{center}
 
 Finalmente, si definimos que un protocolo se distingue de otro según la cantidad total de paquetes de ese protocolo, el orden de distinsión es:
 
@@ -307,13 +310,14 @@ En este sentido, es interesante hacer notar que es muy probable que el Gateway d
 
 \vspace{0.5em}
 
-Los datasets que utilizaremos son:\\
+
+Los datasets utilizados en este experimento fueron: \\
 
 \begin{itemize}
-    \item Dataset Aulas DC: red(wifi) capturada durante 15 minutos.
-    \item Dataset Laboratorios DC: como se definió previamente.
-    \item Dataset Biblioteca Noriega: como se definió previamente.
-    \item Dataset Starbucks: como se definió previamente.
+    \item Dataset Aulas DC (wifi), captura de 15 minutos
+    \item Dataset Laboratorios DC (wifi), captura de 15 minutos
+    \item Dataset Red de un Starbucks(wifi), captura de 15 minutos
+    \item Dataset Red de la Biblioteca Noriega del pabellón 1(wifi), captura de 15 minutos
 \end{itemize}
 
 \vspace{0.5em}
