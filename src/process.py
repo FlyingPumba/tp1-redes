@@ -18,9 +18,6 @@ def entropiaEthernet(pkt):
     if Ether in pkt:
         s = pkt.getlayer(1).summary().partition(' ')[0]
         print ">> {0}".format(pkt.summary())
-        if exp == "exp-proto":
-            with open("exp-proto.dat","a+") as f:
-                f.write(pkt.getlayer(1).summary()+"\n")
         types.append(s)
 
 nodos_dst = []
