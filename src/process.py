@@ -77,6 +77,7 @@ def calcularEntropia(lista):
     print "Los simbolos con probabilidad menor o igual a 0.025 suman probabilidad {0}".format(sum_0025)
     print "Los simbolos con probabilidad menor o igual a 0.005 suman probabilidad {0}".format(sum_0005)
     print "\nLa entropia de la fuente es {0}".format(entropia)
+    return entropia
 
 exp = ""
 if __name__ == "__main__":
