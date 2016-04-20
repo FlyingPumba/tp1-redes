@@ -9,30 +9,20 @@ En esta sección desarrollaremos y mostraremos los resultados de los experimento
 Para realizar estos experimentos analizaremos los siguientes datasets, cada uno tomado en circunstancias diferentes:
 
 \begin{itemize}
-\item Dataset 1: Biblioteca pabellón 2 (wifi) a las 3pm
-\item Dataset 2: Laboratorios pabellón 1 (wifi) a las 5pm
-\item Dataset 3: Hogar de uno de los integrantes del grupo, sin ningun otro dispositivo(wifi) a las 12am
-\item Dataset 4: Hogar de uno de los integrantes del grupo, con más dispositivos conectados a la red(wifi) a las 12:20pm
-\item Dataset 5: Red de un Starbucks(wifi)
-\item Dataset 6: Red de la Biblioteca Noriega del pabellón 1(wifi)
+\item Dataset 1: Biblioteca pabellón 2 (wifi) a las 3pm, captura de 10 minutos
+\item Dataset 2: Laboratorios pabellón 1 (wifi) a las 5pm, captura de 10 minutos
+\item Dataset 3: Hogar de uno de los integrantes del grupo, sin ningun otro dispositivo(wifi) a las 12am, captura de 15 minutos
+\item Dataset 4: Hogar de uno de los integrantes del grupo, con más dispositivos conectados a la red(wifi) a las 12:20pm, captura de 15 minutos
+\item Dataset 5: Red de un Starbucks(wifi), captura de 10 minutos
+\item Dataset 6: Red de la Biblioteca Noriega del pabellón 1(wifi), captura de 30 minutos
 \end{itemize}
 
 
 \subsection{Experimento protocolos distinguidos}
 
-Para analizar los protocolos distinguidos fuimos guardando los resultados de sniffear diferentes redes y tomar como fuente de información S el campo .type de los paquetes que se fueron procesando. Fundamentalmente vimos tres tipos de protocolos: ARP, IP (es decir IPv4) e IPv6. Dentro de los paquetes IP pudimos ver que la mayoría, a su vez, llevaban paquetes ICMP, TCP o UDP. A traves de la libreria "Scapy" de "Python" tomamos dos muestras de los paquetes 'Ethernet' que se pudieron detectar:
+Para analizar los protocolos distinguidos fuimos guardando los resultados de sniffear diferentes redes y tomar como fuente de información S el campo .type de los paquetes que se fueron procesando. De ahí calculamos la cantidad de apariciones de cada protocolo, la probabilidad de aparición de cada protocolo, calculamos la entropía y la comparamos con la información que aporta cada símbolo de S.\\
 
-\begin{itemize}
-\item Dataset 1: Biblioteca pabellón 2 (wifi) a las 3pm
-\item Dataset 2: Laboratorios pabellón 1 (wifi) a las 5pm
-\end{itemize}
-
-Cada dataset contiene todos los paquetes observados junto al protocolo que se uso. De ahí calculamos la cantidad de apariciones de cada protocolo, la probabilidad de aparición de cada protocolo, calculamos la entropía y la comparamos con la información que aporta cada símbolo de S (ARP, IP e IPv6).\\
-
-Por eso, para distinguir \emph{protocolos} tomamos a
-aquellos cuya probabilidad de aparición era alta, de forma que la información provista por el símbolo fuera menor a la entropía de la fuente S.\\
-
-Ahora, para analizar los datos, planteamos histogramas donde podemos ver la cantidad de información $I(s) = -log_2(P(s))$ que aporta cada símbolo de la fuente. Luego lo comparamos con la entropía y definimos los \emph{protocolos distinguidos} como los que son mas bajos que la entropía. Esto lo hicimos porque según la fórmula de Shannon, la entropía $\sum\limits_{s \in S} P(s) * I(s)$ se corresponde con la información promedio que aporta cada símbolo a la fuente. Por lo cual, los símbolos cuya cantidad de información sea mas baja que la entropía son muy predecibles ya que aparecerán muchas veces y, por ejemplo, si tuviera que asignarle otro símbolo a cada uno de ellos, me convendría representarlos con menos bits para disminuir la longitud promedio del código. \\
+Ahora, para analizar los datos, planteamos histogramas donde podemos ver la cantidad de información que aporta cada símbolo de la fuente. Luego lo comparamos con la entropía y definimos los \textbf{protocolos distinguidos} como los que son mas bajos que la entropía. Esto lo hicimos porque según lo que explicamos en la introducción, los símbolos cuya cantidad de información es mas baja que la entropía son muy predecibles y aparecerán muchas veces. \\
 
 Los resultados fueron los siguientes: \\
 
