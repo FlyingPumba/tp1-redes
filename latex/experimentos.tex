@@ -22,7 +22,7 @@ Para realizar estos experimentos analizaremos los siguientes datasets, cada uno 
 
 Para analizar los protocolos distinguidos fuimos guardando los resultados de sniffear diferentes redes y tomar como fuente de información S el campo .type de los paquetes que se fueron procesando. De ahí calculamos la cantidad de apariciones de cada protocolo, la probabilidad de aparición de cada protocolo, calculamos la entropía y la comparamos con la información que aporta cada símbolo de S.\\
 
-Ahora, para analizar los datos, planteamos histogramas donde podemos ver la cantidad de información que aporta cada símbolo de la fuente. Luego lo comparamos con la entropía y definimos los \textbf{protocolos distinguidos} como los que son mas bajos que la entropía. Esto lo hicimos porque según lo que explicamos en la introducción, los símbolos cuya cantidad de información es mas baja que la entropía son muy predecibles y aparecerán muchas veces. \\
+Ahora, para interpretar los datos, planteamos histogramas donde podemos ver la cantidad de información que aporta cada símbolo de la fuente. Luego los comparamos con la entropía porque, según lo que explicamos en la introducción, los símbolos cuya cantidad de información es mas baja que la entropía son muy predecibles y aparecerán muchas veces. \\
 
 Los resultados fueron los siguientes: \\
 
@@ -37,7 +37,7 @@ Los resultados fueron los siguientes: \\
     enlarge y limits=false,
     ymin=0,
     xtick=data,
-    xlabel= {Dataset 1},
+    xlabel= {Dataset Biblioteca Pabellon 2},
     ylabel= {Probabilidad},
     symbolic x coords={IPv6,ARP,IP},
     point meta={y*100}, %y-Werte mal 100 für Prozent
@@ -61,8 +61,9 @@ Los resultados fueron los siguientes: \\
 \begin{axis}[
     symbolic x coords={IPv6,ARP,IP},
         ylabel = {Informacion del simbolo},
-        xlabel = {Dataset 1},
-        xtick=data]
+        xlabel = {Dataset Biblioteca Pabellon 2},
+        xtick=data,
+        ymin=0]
     \addplot[ybar,fill=white] coordinates {
         (IPv6,8.9672262584)
         (ARP,3.8797634179)
@@ -83,7 +84,7 @@ Los resultados fueron los siguientes: \\
     enlarge y limits=false,
     ymin=0,
     xtick=data,
-    xlabel= {Dataset 2},
+    xlabel= {Dataset Laboratorios},
     ylabel= {Probabilidad},
     symbolic x coords={IPv6,ARP,IP},
     point meta={y*100}, %y-Werte mal 100 für Prozent
@@ -99,31 +100,155 @@ Los resultados fueron los siguientes: \\
         y dir=both,
         y explicit
     ] coordinates{
-        (IPv6,0.1389218889)
-        (ARP,0.3728838729)
-        (IP,0.4881942382)};
+        (IPv6,0.161432269198)
+        (ARP,0.216652286454)
+        (IP,0.62191544434)};
 \end{axis}
 \end{tikzpicture}
 \begin{tikzpicture}
 \begin{axis}[
     symbolic x coords={IPv6,ARP,IP},
         ylabel = {Informacion del simbolo},
-        xlabel = {Dataset 2},
-        xtick=data]
+        xlabel = {Dataset Laboratorios},
+        xtick=data,
+        ymin=0]
     \addplot[ybar,fill=white] coordinates {
-        (IPv6,2.847654163)
-        (ARP,1.423201692)
-        (IP,1.034472826)
+        (IPv6,2.63099910265)
+        (ARP,2.20654663262)
+        (IP,0.6852096501)
     };
-    \draw [red] ({rel axis cs:0,0}|-{axis cs:ARP,1.4313141279}) -- ({rel axis cs:1,0}|-{axis cs:ARP,1.4313141279}) node [pos=0.33, above] {Entropia};
+    \draw [red] ({rel axis cs:0,0}|-{axis cs:ARP,1.32892399253}) -- ({rel axis cs:1,0}|-{axis cs:ARP,1.32892399253}) node [pos=0.33, above] {Entropia};
+\end{axis}
+\end{tikzpicture} \\
+
+% Dataset 3 ----------------------------------
+
+\begin{tikzpicture}
+\begin{axis}[
+    ybar,
+    bar width=1cm, % Width of the bar
+    x=1.5cm, % Distance between the centers of the bars
+    enlarge x limits={abs=1cm}, % The distance between the center of the first bar and the left edge
+    enlarge y limits=false,
+    ymin=0,
+    xtick=data,
+    xlabel= {Dataset Starbucks},
+    ylabel= {Probabilidad},
+    symbolic x coords={LLC,IPv6,ARP,IP},
+    point meta={y*100}, %y-Werte mal 100 für Prozent
+    yticklabel={\pgfmathparse{\tick*100}\pgfmathprintnumber{\pgfmathresult}\%},
+    axis lines*=left,
+    clip=false
+    ]
+\addplot [
+    draw=black,
+    fill=white,
+    nodes near coords={\pgfmathprintnumber{\pgfplotspointmeta}\,\%},
+    error bars/.cd,
+        y dir=both,
+        y explicit
+    ] coordinates{
+        (LLC,0.0108909989989)
+        (IPv6,0.0436853441738)
+        (ARP,0.00885841701301)
+        (IP,0.936565239814)};
+\end{axis}
+\end{tikzpicture}
+\begin{tikzpicture}
+\begin{axis}[
+    symbolic x coords={LLC,IPv6,ARP,IP},
+        ylabel = {Informacion del simbolo},
+        xlabel = {Dataset Starbucks},
+        xtick=data,
+        ymin=0]
+    \addplot[ybar,fill=white] coordinates {
+        (LLC,6.52071989553)
+        (IPv6,4.51670683303)
+        (ARP,6.81873537048)
+        (IP,0.0945486008159)
+        };
+    \draw [red] ({rel axis cs:0,0}|-{axis cs:ARP,0.417285180797}) -- ({rel axis cs:1,0}|-{axis cs:ARP,0.417285180797}) node [pos=0.33, above] {Entropia};
+\end{axis}
+\end{tikzpicture} \\
+
+% Dataset 4 ----------------------------------
+
+\begin{tikzpicture}
+\begin{axis}[
+    ybar,
+    bar width=1cm, % Width of the bar
+    x=1.5cm, % Distance between the centers of the bars
+    enlarge x limits={abs=1cm}, % The distance between the center of the first bar and the left edge
+    enlarge y limits=false,
+    ymin=0,
+    xtick=data,
+    xlabel= {Dataset Noriega},
+    ylabel= {Probabilidad},
+    symbolic x coords={LLC,IPX,IPv6,ARP,IP},
+    point meta={y*100}, %y-Werte mal 100 für Prozent
+    yticklabel={\pgfmathparse{\tick*100}\pgfmathprintnumber{\pgfmathresult}\%},
+    axis lines*=left,
+    clip=false
+    ]
+\addplot [
+    draw=black,
+    fill=white,
+    nodes near coords={\pgfmathprintnumber{\pgfplotspointmeta}\,\%},
+    error bars/.cd,
+        y dir=both,
+        y explicit
+    ] coordinates{
+        (LLC,0.071005137663)
+        (IPX,0.0191015676459)
+        (IPv6,0.183111579502)
+        (ARP,0.161111842972)
+        (IP,0.565669872217)};
+\end{axis}
+\end{tikzpicture}
+\begin{tikzpicture}
+\begin{axis}[
+    symbolic x coords={LLC,IPX,IPv6,ARP,IP},
+        ylabel = {Informacion del simbolo},
+        xlabel = {Dataset Noriega},
+        xtick=data,
+        ymin=0]
+    \addplot[ybar,fill=white] coordinates {
+        (LLC,3.81593277343)
+        (IPX,5.71016514617)
+        (IPv6,2.44920506857)
+        (ARP,2.63386554765)
+        (IP,0.821967760322)
+    };
+    \draw [red] ({rel axis cs:0,0}|-{axis cs:ARP,1.7178110768}) -- ({rel axis cs:1,0}|-{axis cs:ARP,1.7178110768}) node [pos=0.33, above] {Entropia};
 \end{axis}
 \end{tikzpicture} \\
 
 % Discusion ------------------------------------
 
-Por lo que podemos ver, la incidencia de ARP es muy baja en el Dataset 1 ya que en una biblioteca hay poco recambio de dispositivos y pocos hosts, lo cual hace que la incidencia de ARP sea menor. En cambio, si hay muchos mas paquetes IP, lo cual tiene sentido porque es el protocolo que todos los hosts usan para conectarse a internet. Entonces como podemos ver, el único símbolo predecible menor que la entropía es el de IP, el cual es el único protocolo distinguido en este dataset. \\
+Por lo que podemos ver, la incidencia de ARP es muy baja en el primer Dataset ya que en una biblioteca hay poco recambio de dispositivos y pocos hosts, lo cual hace que la incidencia de ARP sea menor. En cambio, si hay muchos mas paquetes IP, lo cual tiene sentido porque es el protocolo que todos los hosts usan para conectarse a internet. Entonces como podemos ver, el único símbolo predecible menor que la entropía es el de IP. Es importante aclarar que en este Dataset observamos un comportamiento que en las demás capturas no sucedio: por cada paquete ARP "who-has" vemos inmediatamente otro ARP "is-at", lo cual sugiere una topología o funcionamiento distinto (sin embargo, todas las capturas fueron realizadas bajo las mismas condiciones).\\
 
-En el segundo Dataset, ya podemos hablar de una red (el Laboratorio de Computación) en la cual no solamente hay muchos mas hosts, sino el recambio de dispositivos que entran y se van de la red es mayor, por lo cual la incidencia de ARP sube. A su vez, IP sigue siendo el protocolo más usado al igual que en el dataset anterior. Tanto la información que aporta ARP como IP superan la entropía de la fuente de información S, por eso ambos son en este caso protocolos distinguidos. \\
+En el segundo Dataset, ya podemos hablar de una red (el Laboratorio de Computación) en la cual no solamente hay muchos mas hosts, sino el recambio de dispositivos que entran y se van de la red es mayor, por lo cual la incidencia de ARP sube. A su vez, IP sigue siendo el protocolo más usado al igual que en el dataset anterior. \\
+
+El tercer Dataset presenta un protocolo que no se veía en las capturas anteriores: LLC (Logic Link Control, que maneja el control de errores, control del flujo y entramado, entre otras cosas). LLC tiene menos incidencia que IPv6 pero mas que ARP. Sin embargo hay una amplia mayoría de paquetes IP. \\
+
+Analizando el cuarto Dataset (Noriega), vemos un nuevo protocolo: IPX (Internetworking Packet eXchange). De todos los datasets, este es el que menor incidencia IP tiene (56,57\%) sin embargo es mayor que la de los demás protocolos. ARP e IPv6 comprenden entre el 15\% y 20\% de los paquetes cada uno. Asi como vimos en el Dataset Laboratorios, esto se puede deber a la cantidad de gente que entra y sale de la red constantemente. \\
+
+Si tomamos la cantidad total de paquetes de cada protocolo en cada captura y la dividimos por el total de paquetes capturados, vemos la siguiente proporción: \\
+
+\begin{tikzpicture}
+    \pie[radius=5]{81/IP, 9/IPv6, 8/ARP, 1.7/LLC, 0.3/IPX}
+\end{tikzpicture}
+
+Finalmente, si definimos que un protocolo se distingue de otro según la cantidad total de paquetes de ese protocolo, el orden de distinsión es:
+
+\begin{enumerate}
+\item IP
+\item IPv6
+\item ARP
+\item LLC
+\item IPX
+\end{enumerate}
+
 % end subsection
 
 \subsection{Experimento incidencia de ARP}
