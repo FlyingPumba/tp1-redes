@@ -224,17 +224,13 @@ Los resultados fueron los siguientes: \\
 
 % Discusion ------------------------------------
 
-
-Por lo que podemos ver, la incidencia de ARP es muy baja en el primer Dataset ya que en una biblioteca hay poco recambio de dispositivos y pocos hosts, lo cual hace que la incidencia de ARP sea menor. En cambio, si hay muchos mas paquetes IP, lo cual tiene sentido porque es el protocolo que todos los hosts usan para conectarse a internet. Por su parte, IPv6 tiene menor incidencia que IP (y también ARP), se lo atribuimos a que esta versión de IP es menos usada. Entonces como podemos ver, el único símbolo predecible menor que la entropía es el de IP. Es importante aclarar que en este Dataset observamos un comportamiento que en las demás capturas no sucedio: por cada paquete ARP "who-has" vemos inmediatamente otro ARP "is-at", lo cual sugiere una topología o funcionamiento distinto (sin embargo, todas las capturas fueron realizadas bajo las mismas condiciones).\\
-
-Por lo que podemos ver, la incidencia de \texttt{ARP} es muy baja en el primer Dataset ya que en una biblioteca hay poco recambio de dispositivos y pocos hosts, lo cual hace que la incidencia de \texttt{ARP} sea menor. En cambio, si hay muchos mas paquetes \texttt{IP}, lo cual tiene sentido porque es el protocolo que todos los hosts usan para conectarse a internet. Entonces como podemos ver, el único símbolo predecible menor que la entropía es el de \texttt{IP}. Es importante aclarar que en este Dataset observamos un comportamiento que en las demás capturas no sucedio: por cada paquete \texttt{ARP} "who-has" vemos inmediatamente otro \texttt{ARP} "is-at", lo cual sugiere una topología o funcionamiento distinto (sin embargo, todas las capturas fueron realizadas bajo las mismas condiciones).\\
-
+Por lo que podemos ver, la incidencia de \texttt{ARP} es muy baja en el primer Dataset ya que en una biblioteca hay poco recambio de dispositivos y pocos hosts, lo cual hace que la incidencia de \texttt{ARP} sea menor. En cambio, si hay muchos mas paquetes \texttt{IP}, lo cual tiene sentido porque es el protocolo que todos los hosts usan para conectarse a internet. Por su parte, IPv6 tiene menor incidencia que IP (y también ARP), se lo atribuimos a que esta versión de IP es menos usada. Entonces como podemos ver, el único símbolo predecible menor que la entropía es el de \texttt{IP}. Es importante aclarar que en este Dataset observamos un comportamiento que en las demás capturas no sucedió: por cada paquete \texttt{ARP} "who-has" vemos inmediatamente otro \texttt{ARP} "is-at", lo cual sugiere una topología o funcionamiento distinto (sin embargo, todas las capturas fueron realizadas bajo las mismas condiciones).\\
 
 En el segundo Dataset, ya podemos hablar de una red (el Laboratorio de Computación) en la cual no solamente hay muchos mas hosts, sino el recambio de dispositivos que entran y se van de la red es mayor, por lo cual la incidencia de \texttt{ARP} sube. A su vez, \texttt{IP} sigue siendo el protocolo más usado al igual que en el dataset anterior. \\
 
 El tercer Dataset presenta un protocolo que no se veía en las capturas anteriores: LLC (Logic Link Control, que maneja el control de errores, control del flujo y entramado, entre otras cosas). LLC tiene menos incidencia que \texttt{IPv6} pero mas que \texttt{ARP}. Sin embargo hay una amplia mayoría de paquetes \texttt{IP}. \\
 
-Analizando el cuarto Dataset (Noriega), vemos un nuevo protocolo: \texttt{IPX} (Internetworking Packet eXchange). De todos los datasets, este es el que menor incidencia \texttt{IP} tiene (56,57\%) sin embargo es mayor que la de los demás protocolos. \texttt{ARP} e \texttt{IPv6} comprenden entre el 15\% y 20\% de los paquetes cada uno. Asi como vimos en el Dataset Laboratorios, esto se puede deber a la cantidad de gente que entra y sale de la red constantemente. \\
+Analizando el cuarto Dataset (Noriega), vemos un nuevo protocolo: \texttt{IPX} (Internetworking Packet eXchange). De todos los datasets, este es el que menor incidencia \texttt{IP} tiene (56,57\%) sin embargo es mayor que la de los demás protocolos. \texttt{ARP} e \texttt{IPv6} comprenden entre el 15\% y 20\% de los paquetes cada uno. Así como vimos en el Dataset Laboratorios, esto se puede deber a la cantidad de gente que entra y sale de la red constantemente. \\
 
 Si tomamos la cantidad total de paquetes de cada protocolo en cada captura y la dividimos por el total de paquetes capturados, vemos la siguiente proporción: \\
 
@@ -285,7 +281,7 @@ conectado a la red y cuando hay más cantidad. Podemos ver que el tráfico de pa
 cuando hay mayor cantidad de dispositivos el tráfico general aumenta y también el porcentaje de paquetes \texttt{ARP}, porque en este caso hay mas hosts.\\
 
 Por último tenemos dos mediciones realizadas en la biblioteca Noriega y un Starbucks, en estas podemos ver resultados similares a los anteriores. La biblioteca tiene a muchas
-gente entrando y saliendo, muchos de ellos se quedan a usar las instalaciones para estudiar con sus celulares y computadoras portatiles. En el Starbucks notamos que era menos
+gente entrando y saliendo, muchos de ellos se quedan a usar las instalaciones para estudiar con sus celulares y computadoras portátiles. En el Starbucks notamos que era menos
 común cuando se realizo las mediciones.\\
 
 La conclusión que podemos sacar es que, si bien estas muestras pertenecen a distintos lugares y horarios, podemos ver como el tráfico de paquetes \texttt{ARP} es más significativo cuando
@@ -348,19 +344,19 @@ La \textbf{cantidad símbolos} es: 101
 Los \textbf{nodos distinguidos} son:
 
 \begin{itemize}
-    \item Con etiqueta 1: 10.2.6.250 tiene informacion 4.11
-    \item Con etiqueta 2: 10.2.203.254 tiene informacion 2.53
-    \item Con etiqueta 3: 10.2.2.205 tiene informacion 4.48
-    \item Con etiqueta 4: 10.2.1.230 tiene informacion 4.70
-    \item Con etiqueta 5: 10.2.1.254 tiene informacion 3.91
-    \item Con etiqueta 6: 10.2.2.254 tiene informacion 2.62
+    \item Con etiqueta 1: 10.2.6.250 tiene información 4.11
+    \item Con etiqueta 2: 10.2.203.254 tiene información 2.53
+    \item Con etiqueta 3: 10.2.2.205 tiene información 4.48
+    \item Con etiqueta 4: 10.2.1.230 tiene información 4.70
+    \item Con etiqueta 5: 10.2.1.254 tiene información 3.91
+    \item Con etiqueta 6: 10.2.2.254 tiene información 2.62
 \end{itemize}
 
 En esta red encontramos la particularidad de que hay 2 nodos distinguidos que tienen
 una cantidad de apariciones en la \texttt{IP} \textit{destino} muy parecida.
 La \texttt{IP} 10.2.203.254 tiene 81 apariciones mientras que la \texttt{IP} 10.2.2.254 tiene 76 apariciones.
 
-Además, notese dichos nodos aparecen como dos componentes diferentes en el grafo que no hablan entre si,
+Además, nótese dichos nodos aparecen como dos componentes diferentes en el grafo que no hablan entre si,
 lo que podría sugerir que la \texttt{IP} 10.2.203.254 es el \textit{Gateway} de la red
 y la \texttt{IP} 10.2.2.254 podría ser un Switch.
 
@@ -379,20 +375,20 @@ La \textbf{cantidad símbolos} es: 275
 Los \textbf{nodos distinguidos} son:
 
 \begin{itemize}
-    \item Con etiqueta 1: 10.2.7.249 tiene informacion 5.34
-    \item Con etiqueta 2: 10.2.7.254 tiene informacion 5.32
-    \item Con etiqueta 3: 10.2.7.250 tiene informacion 4.35
-    \item Con etiqueta 4: 10.2.203.27 tiene informacion 3.86
-    \item Con etiqueta 5: 10.2.3.230 tiene informacion 5.86
-    \item Con etiqueta 6: 10.2.203.254 tiene informacion 3.10
-    \item Con etiqueta 7: 10.2.1.230 tiene informacion 3.91
-    \item Con etiqueta 8: 10.2.0.67 tiene informacion 5.24
-    \item Con etiqueta 9: 10.2.0.64 tiene informacion 5.34
-    \item Con etiqueta 10: 10.2.0.65 tiene informacion 5.34
-    \item Con etiqueta 11: 169.254.255.255 tiene informacion 5.95
-    \item Con etiqueta 12: 169.254.231.139 tiene informacion 5.24
-    \item Con etiqueta 13: 10.2.1.254 tiene informacion 3.94
-    \item Con etiqueta 14: 10.2.0.187 tiene informacion 4.77
+    \item Con etiqueta 1: 10.2.7.249 tiene información 5.34
+    \item Con etiqueta 2: 10.2.7.254 tiene información 5.32
+    \item Con etiqueta 3: 10.2.7.250 tiene información 4.35
+    \item Con etiqueta 4: 10.2.203.27 tiene información 3.86
+    \item Con etiqueta 5: 10.2.3.230 tiene información 5.86
+    \item Con etiqueta 6: 10.2.203.254 tiene información 3.10
+    \item Con etiqueta 7: 10.2.1.230 tiene información 3.91
+    \item Con etiqueta 8: 10.2.0.67 tiene información 5.24
+    \item Con etiqueta 9: 10.2.0.64 tiene información 5.34
+    \item Con etiqueta 10: 10.2.0.65 tiene información 5.34
+    \item Con etiqueta 11: 169.254.255.255 tiene información 5.95
+    \item Con etiqueta 12: 169.254.231.139 tiene información 5.24
+    \item Con etiqueta 13: 10.2.1.254 tiene información 3.94
+    \item Con etiqueta 14: 10.2.0.187 tiene información 4.77
 \end{itemize}
 
 En esta red está claro que el \textit{Gateway} es la \texttt{IP} 10.2.203.254, debido a que
@@ -422,17 +418,17 @@ Las particularidades a mencionar son:
     \caption{Topología de la red para el Dataset Biblioteca Noriega}
 \end{figure}
 
-La \textbf{entropia} de la fuente es: 5.91
+La \textbf{entropía} de la fuente es: 5.91
 
 La \textbf{cantidad símbolos} es: 110
 
 Los \textbf{nodos distinguidos} son:
 
 \begin{itemize}
-    \item Con etiqueta 1: 10.255.255.254 tiene informacion 4.13
-    \item Con etiqueta 2: 157.92.15.199 tiene informacion 2.66
-    \item Con etiqueta 3: 157.92.15.133 tiene informacion 4.35
-    \item Con etiqueta 4: 157.92.15.136 tiene informacion 5.45
+    \item Con etiqueta 1: 10.255.255.254 tiene información 4.13
+    \item Con etiqueta 2: 157.92.15.199 tiene información 2.66
+    \item Con etiqueta 3: 157.92.15.133 tiene información 4.35
+    \item Con etiqueta 4: 157.92.15.136 tiene información 5.45
 \end{itemize}
 
 En esta red está claro que el \textit{Gateway} es la \texttt{IP} 157.92.15.199, debido a que
@@ -455,14 +451,14 @@ Las particularidades a mencionar son:
     \caption{Topología de la red para el Dataset Starbucks}
 \end{figure}
 
-La \textbf{entropia} de la fuente es: 3.51
+La \textbf{entropía} de la fuente es: 3.51
 
 La \textbf{cantidad símbolos} es: 32
 
 Los \textbf{nodos distinguidos} son:
 
 \begin{itemize}
-    \item Con etiqueta 1: 10.254.70.1 tiene informacion 1.21
+    \item Con etiqueta 1: 10.254.70.1 tiene información 1.21
 \end{itemize}
 
 En esta red está claro que el \textit{Gateway} es la \texttt{IP} 10.254.70.1, debido a que
