@@ -2,19 +2,17 @@ En esta sección desarrollaremos y mostraremos los resultados de los experimento
 
 \begin{itemize}
 \item Los protocolos distinguidos.
-\item La incidencia de paquetes ARP en la red.
+\item La incidencia de paquetes \texttt{ARP} en la red.
 \item Los nodos distinguidos.
 \end{itemize}
 
 Para realizar estos experimentos analizaremos los siguientes datasets, cada uno tomado en circunstancias diferentes:
 
 \begin{itemize}
-\item Dataset 1: Biblioteca pabellón 2 (wifi) a las 3pm, captura de 10 minutos
-\item Dataset 2: Laboratorios pabellón 1 (wifi) a las 5pm, captura de 10 minutos
-\item Dataset 3: Hogar de uno de los integrantes del grupo, sin ningun otro dispositivo(wifi) a las 12am, captura de 15 minutos
-\item Dataset 4: Hogar de uno de los integrantes del grupo, con más dispositivos conectados a la red(wifi) a las 12:20pm, captura de 15 minutos
-\item Dataset 5: Red de un Starbucks(wifi), captura de 10 minutos
-\item Dataset 6: Red de la Biblioteca Noriega del pabellón 1(wifi), captura de 30 minutos
+\item Dataset Biblioteca pabellón 2 (wifi), captura de 15 minutos
+\item Dataset Laboratorios pabellón 1 (wifi), captura de 15 minutos
+\item Dataset Red de un Starbucks(wifi), captura de 15 minutos
+\item Dataset Red de la Biblioteca Noriega del pabellón 1(wifi), captura de 15 minutos
 \end{itemize}
 
 
@@ -37,7 +35,7 @@ Los resultados fueron los siguientes: \\
     enlarge y limits=false,
     ymin=0,
     xtick=data,
-    xlabel= {Dataset Biblioteca Pabellon 2},
+    xlabel= {Dataset Biblioteca Pabellón 2},
     ylabel= {Probabilidad},
     symbolic x coords={IPv6,ARP,IP},
     point meta={y*100}, %y-Werte mal 100 für Prozent
@@ -60,8 +58,8 @@ Los resultados fueron los siguientes: \\
 \begin{tikzpicture}
 \begin{axis}[
     symbolic x coords={IPv6,ARP,IP},
-        ylabel = {Informacion del simbolo},
-        xlabel = {Dataset Biblioteca Pabellon 2},
+        ylabel = {Información del símbolo},
+        xlabel = {Dataset Biblioteca Pabellón 2},
         xtick=data,
         ymin=0]
     \addplot[ybar,fill=white] coordinates {
@@ -108,7 +106,7 @@ Los resultados fueron los siguientes: \\
 \begin{tikzpicture}
 \begin{axis}[
     symbolic x coords={IPv6,ARP,IP},
-        ylabel = {Informacion del simbolo},
+        ylabel = {Información del símbolo},
         xlabel = {Dataset Laboratorios},
         xtick=data,
         ymin=0]
@@ -157,7 +155,7 @@ Los resultados fueron los siguientes: \\
 \begin{tikzpicture}
 \begin{axis}[
     symbolic x coords={LLC,IPv6,ARP,IP},
-        ylabel = {Informacion del simbolo},
+        ylabel = {Información del símbolo},
         xlabel = {Dataset Starbucks},
         xtick=data,
         ymin=0]
@@ -208,7 +206,7 @@ Los resultados fueron los siguientes: \\
 \begin{tikzpicture}
 \begin{axis}[
     symbolic x coords={LLC,IPX,IPv6,ARP,IP},
-        ylabel = {Informacion del simbolo},
+        ylabel = {Información del símbolo},
         xlabel = {Dataset Noriega},
         xtick=data,
         ymin=0]
@@ -225,13 +223,17 @@ Los resultados fueron los siguientes: \\
 
 % Discusion ------------------------------------
 
-Por lo que podemos ver, la incidencia de ARP es muy baja en el primer Dataset ya que en una biblioteca hay poco recambio de dispositivos y pocos hosts, lo cual hace que la incidencia de ARP sea menor. En cambio, si hay muchos mas paquetes IP, lo cual tiene sentido porque es el protocolo que todos los hosts usan para conectarse a internet. Entonces como podemos ver, el único símbolo predecible menor que la entropía es el de IP. Es importante aclarar que en este Dataset observamos un comportamiento que en las demás capturas no sucedio: por cada paquete ARP "who-has" vemos inmediatamente otro ARP "is-at", lo cual sugiere una topología o funcionamiento distinto (sin embargo, todas las capturas fueron realizadas bajo las mismas condiciones).\\
 
-En el segundo Dataset, ya podemos hablar de una red (el Laboratorio de Computación) en la cual no solamente hay muchos mas hosts, sino el recambio de dispositivos que entran y se van de la red es mayor, por lo cual la incidencia de ARP sube. A su vez, IP sigue siendo el protocolo más usado al igual que en el dataset anterior. \\
+Por lo que podemos ver, la incidencia de ARP es muy baja en el primer Dataset ya que en una biblioteca hay poco recambio de dispositivos y pocos hosts, lo cual hace que la incidencia de ARP sea menor. En cambio, si hay muchos mas paquetes IP, lo cual tiene sentido porque es el protocolo que todos los hosts usan para conectarse a internet. Por su parte, IPv6 tiene menor incidencia que IP (y también ARP), se lo atribuimos a que esta versión de IP es menos usada. Entonces como podemos ver, el único símbolo predecible menor que la entropía es el de IP. Es importante aclarar que en este Dataset observamos un comportamiento que en las demás capturas no sucedio: por cada paquete ARP "who-has" vemos inmediatamente otro ARP "is-at", lo cual sugiere una topología o funcionamiento distinto (sin embargo, todas las capturas fueron realizadas bajo las mismas condiciones).\\
 
-El tercer Dataset presenta un protocolo que no se veía en las capturas anteriores: LLC (Logic Link Control, que maneja el control de errores, control del flujo y entramado, entre otras cosas). LLC tiene menos incidencia que IPv6 pero mas que ARP. Sin embargo hay una amplia mayoría de paquetes IP. \\
+Por lo que podemos ver, la incidencia de \texttt{ARP} es muy baja en el primer Dataset ya que en una biblioteca hay poco recambio de dispositivos y pocos hosts, lo cual hace que la incidencia de \texttt{ARP} sea menor. En cambio, si hay muchos mas paquetes \texttt{IP}, lo cual tiene sentido porque es el protocolo que todos los hosts usan para conectarse a internet. Entonces como podemos ver, el único símbolo predecible menor que la entropía es el de \texttt{IP}. Es importante aclarar que en este Dataset observamos un comportamiento que en las demás capturas no sucedio: por cada paquete \texttt{ARP} "who-has" vemos inmediatamente otro \texttt{ARP} "is-at", lo cual sugiere una topología o funcionamiento distinto (sin embargo, todas las capturas fueron realizadas bajo las mismas condiciones).\\
 
-Analizando el cuarto Dataset (Noriega), vemos un nuevo protocolo: IPX (Internetworking Packet eXchange). De todos los datasets, este es el que menor incidencia IP tiene (56,57\%) sin embargo es mayor que la de los demás protocolos. ARP e IPv6 comprenden entre el 15\% y 20\% de los paquetes cada uno. Asi como vimos en el Dataset Laboratorios, esto se puede deber a la cantidad de gente que entra y sale de la red constantemente. \\
+
+En el segundo Dataset, ya podemos hablar de una red (el Laboratorio de Computación) en la cual no solamente hay muchos mas hosts, sino el recambio de dispositivos que entran y se van de la red es mayor, por lo cual la incidencia de \texttt{ARP} sube. A su vez, \texttt{IP} sigue siendo el protocolo más usado al igual que en el dataset anterior. \\
+
+El tercer Dataset presenta un protocolo que no se veía en las capturas anteriores: LLC (Logic Link Control, que maneja el control de errores, control del flujo y entramado, entre otras cosas). LLC tiene menos incidencia que \texttt{IPv6} pero mas que \texttt{ARP}. Sin embargo hay una amplia mayoría de paquetes \texttt{IP}. \\
+
+Analizando el cuarto Dataset (Noriega), vemos un nuevo protocolo: \texttt{IPX} (Internetworking Packet eXchange). De todos los datasets, este es el que menor incidencia \texttt{IP} tiene (56,57\%) sin embargo es mayor que la de los demás protocolos. \texttt{ARP} e \texttt{IPv6} comprenden entre el 15\% y 20\% de los paquetes cada uno. Asi como vimos en el Dataset Laboratorios, esto se puede deber a la cantidad de gente que entra y sale de la red constantemente. \\
 
 Si tomamos la cantidad total de paquetes de cada protocolo en cada captura y la dividimos por el total de paquetes capturados, vemos la siguiente proporción: \\
 
@@ -242,41 +244,48 @@ Si tomamos la cantidad total de paquetes de cada protocolo en cada captura y la 
 Finalmente, si definimos que un protocolo se distingue de otro según la cantidad total de paquetes de ese protocolo, el orden de distinsión es:
 
 \begin{enumerate}
-\item IP
-\item IPv6
-\item ARP
-\item LLC
-\item IPX
+\item \texttt{IP}
+\item \texttt{IPv6}
+\item \texttt{ARP}
+\item \texttt{LLC}
+\item \texttt{IPX}
 \end{enumerate}
 
 % end subsection
 
 \subsection{Experimento incidencia de ARP}
 
-Usaremos la misma forma de medir que describimos en el ejercicio anterior para poder observar la incidencia de paquetes ARP en la red voy a utilizar una serie de muestras
+Usaremos la misma forma de medir que describimos en el ejercicio anterior para poder observar la incidencia de paquetes \texttt{ARP} en la red voy a utilizar una serie de muestras
 tomadas de distintas redes y graficarlas en un histograma, después de mostrar los resultados daremos una explicación del por que de los mismo. Aclaración: todas las capturas
-son de 15 minutos.
+son de 15 minutos.\\
+
+Usamos dos datasets exlusivos para poder observar el comportamiento de redes más controladas bajo la hipótesis de que entre más hosts hay más incidencia de paquetes ARP en la red.\\
+
+\begin{itemize}
+\item Dataset Hogar de uno de los integrantes del grupo, sin ningun otro dispositivo(wifi) a las 12am, captura de 15 minutos
+\item Dataset Hogar de uno de los integrantes del grupo, con más dispositivos conectados a la red(wifi) a las 12:20pm, captura de 15 minutos
+\end{itemize}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=90mm]{imagenes/IncidenciaARP.jpg}
+\includegraphics[width=150mm]{imagenes/IncidenciaARP.jpg}
 \caption{Comparación de porcentaje de apariciones de ARP en distintas redes o con distintas condiciones.\label{overflow}}
 \end{figure}
 
-Como podemos ver la red de los laboratorios tiene más porcentaje de paquetes ARP que el de la biblioteca. Esto se debe a que en el laboratorio del pabellón 1 ingresan
+Como podemos ver la red de los laboratorios tiene más porcentaje de paquetes \texttt{ARP} que el de la biblioteca. Esto se debe a que en el laboratorio del pabellón 1 ingresan
 constantemente personas y, por lo tanto, la mayoría de ellos ingresan en la red a través de las computadoras del mismo o usando el wifi de estos con sus celulares. Esto
-ocurre en menor medida en la biblioteca ya que no se usan computadoras que no sean propias de los que ingresan y, por lo tanto, hay mucho más tráfico de paquetes ARP en la red
+ocurre en menor medida en la biblioteca ya que no se usan computadoras que no sean propias de los que ingresan y, por lo tanto, hay mucho más tráfico de paquetes \texttt{ARP} en la red
 de los laboratorios. Además al estar en una red privada, es más común que se efectúen envíos de mensajes entre computadoras y los routers de las mismas.\\
 
 En menor medida tenemos los casos tomados en la red de un hogar, teniendo como sus dos mediciones a cuando solamente hay un dispositivo, el mismo con el que se realiza la medición,
-conectado a la red y cuando hay más cantidad. Podemos ver que el tráfico de paquetes ARP es muy bajo en ambos casos en comparación a las muestras anteriores. Sin embargo,
-cuando hay mayor cantidad de dispositivos el tráfico general aumenta y también el porcentaje de paquetes ARP, porque en este caso hay mas hosts.\\
+conectado a la red y cuando hay más cantidad. Podemos ver que el tráfico de paquetes \texttt{ARP} es muy bajo en ambos casos en comparación a las muestras anteriores. Sin embargo,
+cuando hay mayor cantidad de dispositivos el tráfico general aumenta y también el porcentaje de paquetes \texttt{ARP}, porque en este caso hay mas hosts.\\
 
 Por último tenemos dos mediciones realizadas en la biblioteca Noriega y un Starbucks, en estas podemos ver resultados similares a los anteriores. La biblioteca tiene a muchas
 gente entrando y saliendo, muchos de ellos se quedan a usar las instalaciones para estudiar con sus celulares y computadoras portatiles. En el Starbucks notamos que era menos
 común cuando se realizo las mediciones.\\
 
-La conclusión que podemos sacar es que si bien estas muestras pertenecen a distintos lugares y horarios podemos ver como el tráfico de paquetes ARP es más significativo cuando
+La conclusión que podemos sacar es que si bien estas muestras pertenecen a distintos lugares y horarios podemos ver como el tráfico de paquetes \texttt{ARP} es más significativo cuando
 la red tiende a obtener nuevos hosts con más constancia.
 
 % end subsection
