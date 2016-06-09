@@ -42,14 +42,18 @@ def calcularEntropia(lista):
     sum_0005 = 0.0
     #print "\nElementos de la fuente de informacion:"
     #print elementosDistintos
-    archivo = open("resul_nodos.txt", "w")
+    j = 0
+    archivo = open("nodosNoriega.txt", "w")
+    s = "Label X Y"
+    archivo.write(s)
     for elem, apariciones in elementosDistintos.iteritems():
         proba = float(apariciones)/float(len(lista))
         info = (- math.log(proba)/math.log(2))
         elementosDistintos[elem] = proba
         infoElemento[elem] = info
+        j = j + 1
         i = "%.3f" % info
-        s = str(elem) + " " + i + "\n"
+        s = str(elem) + " " + str(j) + " " + i + "\n"
         archivo.write(s)
         if proba <= 0.005:
             sum_0005 += proba
