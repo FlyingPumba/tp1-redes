@@ -1,7 +1,7 @@
 En la introducción definimos dos fuentes de información $S$ y $S_{1}$, de las cuales, en la experimentación, calculamos su entropía y la información que provee cada símbolo. De esta manera pudimos distinguir determinados símbolos en cada fuente, según que Dataset utilizamos para el cálculo. A partir de ese cálculo, pudimos concluir que:
 \begin{itemize}
   \item \textbf{Caso fuente $S$, protocolos}: Sin importar el Dataset, el protocolo \texttt{IP} se distingue claramente de los demás. Vale la pena mencionar el caso del protocolo \texttt{IPv6}, cuya probabilidad de ocurrencia es baja, lo cual da una pauta de su baja implementación.
-  \item \textbf{Caso fuente $S_{1}$, nodos}: El Dataset juega un rol diferenciador a la hora de distinguir nodos, donde, según el Dataset, podemos observar uno o mas nodos distinguidos. Este fenómeno se explica por la topología de cada red, lo cual puede contener más de un gateway.
+  \item \textbf{Caso fuente $S_{1}$, nodos}: El Dataset juega un rol diferenciador a la hora de distinguir nodos, donde, según el Dataset, podemos observar uno o mas nodos distinguidos. Este fenómeno se explica por la topología de cada red, la cual puede contener más de un gateway.
 \end{itemize}
 
 Con respecto a la incidencia de los paquetes \texttt{ARP} en las diversas redes, pudimos observar que su incidencia, en redes con muchos nodos, es considerable, lo cual afecta negativo en el throughput de la red. Sin embargo entendemos que esta perdida de eficiencia en necesario en haras de lograr un funcionamiento adecuado de las redes y que la necesidad de los paquetes \texttt{ARP} se deben a razones historicas, debido a la proliferación de protocolos de capa 2, los cuales se buscaron homogeneizar con el protocolo \texttt{IP}

@@ -224,7 +224,7 @@ Los resultados fueron los siguientes: \\
 
 % Discusion ------------------------------------
 
-Por lo que podemos ver, la incidencia de \texttt{ARP} es muy baja en el primer Dataset ya que en una biblioteca hay poco recambio de dispositivos y pocos hosts, lo cual hace que la incidencia de \texttt{ARP} sea menor. En cambio, si hay muchos mas paquetes \texttt{IP}, lo cual tiene sentido porque es el protocolo que todos los hosts usan para conectarse a internet. Por su parte, IPv6 tiene menor incidencia que IP (y también ARP), se lo atribuimos a que esta versión de IP es menos usada. Entonces como podemos ver, el único símbolo predecible menor que la entropía es el de \texttt{IP}. 
+Por lo que podemos ver, la incidencia de \texttt{ARP} es muy baja en el primer Dataset ya que en una biblioteca hay poco recambio de dispositivos y pocos hosts, lo cual hace que la incidencia de \texttt{ARP} sea menor. En cambio, si hay muchos mas paquetes \texttt{IP}, lo cual tiene sentido porque es el protocolo que todos los hosts usan para conectarse a internet. Por su parte, IPv6 tiene menor incidencia que IP (y también ARP), se lo atribuimos a que esta versión de IP es menos usada. Entonces como podemos ver, el único símbolo predecible menor que la entropía es el de \texttt{IP}.
 %Es importante aclarar que en este Dataset observamos un comportamiento que en las demás capturas no sucedió: por cada paquete \texttt{ARP} "who-has" vemos inmediatamente otro \texttt{ARP} "is-at", lo cual sugiere una topología o funcionamiento distinto (sin embargo, todas las capturas fueron realizadas bajo las mismas condiciones).\\
 
 En el segundo Dataset, ya podemos hablar de una red (el Laboratorio de Computación) en la cual no solamente hay muchos mas hosts, sino el recambio de dispositivos que entran y se van de la red es mayor, por lo cual la incidencia de \texttt{ARP} sube. A su vez, \texttt{IP} sigue siendo el protocolo más usado al igual que en el dataset anterior. \\
@@ -255,19 +255,19 @@ Analizando el cuarto Dataset (Noriega), vemos un nuevo protocolo: \texttt{IPX} (
 
 \subsection{Experimento incidencia de ARP}
 
-Para poder observar la incidencia de paquetes \texttt{ARP} en la red, vamos a utilizar una serie de muestras tomadas de distintas redes y graficarlas en un histograma, 
-después de mostrar los resultados daremos una explicación del por que de los mismo. Aclaración: todas las capturas son de 15 minutos.\\
+Para poder observar la incidencia de paquetes \texttt{ARP} en la red, vamos a utilizar una serie de muestras tomadas de distintas redes y graficarlas en un histograma,
+después de mostrar los resultados daremos una explicación del por que de los mismo.\\
 
-Usamos dos datasets exclusivos para poder observar el comportamiento de redes más controladas, bajo la hipótesis de que entre más hosts hay más incidencia de paquetes ARP 
+Usamos dos datasets exclusivos para poder observar el comportamiento de redes más controladas, bajo la hipótesis de que entre más hosts hay más incidencia de paquetes ARP
 en la red. Los datasets que usamos son los siguientes:\\
 
 \begin{itemize}
-    \item \texttt{Dataset} Biblioteca pabellón 2 (wifi), captura de 15 minutos
-    \item \texttt{Dataset} Laboratorios pabellón 1 (wifi), captura de 15 minutos
-    \item \texttt{Dataset} Red de un Starbucks(wifi), captura de 15 minutos
-    \item \texttt{Dataset} Red de la Biblioteca Noriega del pabellón 1(wifi), captura de 15 minutos
-    \item \texttt{Dataset} Hogar de uno de los integrantes del grupo, sin ningun otro dispositivo(wifi), captura de 15 minutos
-    \item \texttt{Dataset} Hogar de uno de los integrantes del grupo, con más dispositivos conectados a la red(wifi), captura de 15 minutos
+    \item Dataset Biblioteca pabellón 2 (wifi), captura de 15 minutos
+    \item Dataset Laboratorios pabellón 1 (wifi), captura de 15 minutos
+    \item Dataset Red de un Starbucks(wifi), captura de 15 minutos
+    \item Dataset Red de la Biblioteca Noriega del pabellón 1(wifi), captura de 15 minutos
+    \item Dataset Hogar de uno de los integrantes del grupo, sin ningun otro dispositivo(wifi), captura de 15 minutos
+    \item Dataset Hogar de uno de los integrantes del grupo, con más dispositivos conectados a la red(wifi), captura de 15 minutos
 \end{itemize}
 
 \begin{figure}[H]
@@ -286,7 +286,7 @@ conectado a la red y cuando hay más cantidad. Podemos ver que el tráfico de pa
 cuando hay mayor cantidad de dispositivos el tráfico general aumenta y también el porcentaje de paquetes \texttt{ARP}, porque en este caso hay mas hosts.\\
 
 Por último tenemos dos mediciones realizadas en la biblioteca Noriega y un Starbucks, en estas podemos ver resultados similares a los anteriores. La biblioteca tiene a muchas
-gente entrando y saliendo, muchos de ellos se quedan a usar las instalaciones para estudiar con sus celulares y computadoras portátiles. En el Starbucks notamos que era menos
+personas entrando y saliendo, muchos de ellos se quedan a usar las instalaciones para estudiar con sus celulares y computadoras portátiles. En el Starbucks notamos que era menos
 común cuando se realizo las mediciones.\\
 
 La conclusión que podemos sacar es que, si bien estas muestras pertenecen a distintos lugares y horarios, podemos ver como el tráfico de paquetes \texttt{ARP} es más significativo cuando
@@ -297,7 +297,7 @@ la red tiende a recibir nuevos hosts con más constancia.
 
 \subsection{Experimento nodos distinguidos}
 
-Para distinguir los nodos de una red, tomaremos como fuente de información $S_1$ el campo
+Para distinguir los nodos de una red, tomaremos como fuente de información $S_1$, que utilizaba el campo
 \texttt{IP} \textit{destino} de los paquetes \texttt{ARP Who-Has}.
 
 No utilizaremos otros paquetes distintos de \texttt{ARP}, ya que queremos restringirnos a las comunicaciones internas de la subred. \\
@@ -450,7 +450,7 @@ Los \textbf{nodos distinguidos} son:
     \item Con etiqueta 242: 169.254.255.255 tiene información 5.95
     \item Con etiqueta 244: 169.254.231.139 tiene información 5.24
     \item Con etiqueta 249: 10.2.1.254 tiene información 3.94
-    
+
 \end{itemize}
 
 En esta red está claro que el \textit{Gateway} es la \texttt{IP} 10.2.203.254, debido a que
