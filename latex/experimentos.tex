@@ -68,7 +68,7 @@ Los resultados fueron los siguientes: \\
         (ARP,3.8797634179)
         (IP,0.1045889014)
     };
-    \draw [red] ({rel axis cs:0,0}|-{axis cs:ARP,0.378751880122}) -- ({rel axis cs:1,0}|-{axis cs:ARP,0.378751880122}) node [pos=0.33, above] {Entropia};
+    \draw [red] ({rel axis cs:0,0}|-{axis cs:ARP,0.378751880122}) -- ({rel axis cs:1,0}|-{axis cs:ARP,0.378751880122}) node [pos=0.33, above] {Entropía};
 \end{axis}
 \end{tikzpicture} \\
 
@@ -116,7 +116,7 @@ Los resultados fueron los siguientes: \\
         (ARP,2.20654663262)
         (IP,0.6852096501)
     };
-    \draw [red] ({rel axis cs:0,0}|-{axis cs:ARP,1.32892399253}) -- ({rel axis cs:1,0}|-{axis cs:ARP,1.32892399253}) node [pos=0.33, above] {Entropia};
+    \draw [red] ({rel axis cs:0,0}|-{axis cs:ARP,1.32892399253}) -- ({rel axis cs:1,0}|-{axis cs:ARP,1.32892399253}) node [pos=0.33, above] {Entropía};
 \end{axis}
 \end{tikzpicture} \\
 
@@ -166,7 +166,7 @@ Los resultados fueron los siguientes: \\
         (ARP,6.81873537048)
         (IP,0.0945486008159)
         };
-    \draw [red] ({rel axis cs:0,0}|-{axis cs:ARP,0.417285180797}) -- ({rel axis cs:1,0}|-{axis cs:ARP,0.417285180797}) node [pos=0.33, above] {Entropia};
+    \draw [red] ({rel axis cs:0,0}|-{axis cs:ARP,0.417285180797}) -- ({rel axis cs:1,0}|-{axis cs:ARP,0.417285180797}) node [pos=0.33, above] {Entropía};
 \end{axis}
 \end{tikzpicture} \\
 
@@ -218,7 +218,7 @@ Los resultados fueron los siguientes: \\
         (ARP,2.63386554765)
         (IP,0.821967760322)
     };
-    \draw [red] ({rel axis cs:0,0}|-{axis cs:ARP,1.7178110768}) -- ({rel axis cs:1,0}|-{axis cs:ARP,1.7178110768}) node [pos=0.33, above] {Entropia};
+    \draw [red] ({rel axis cs:0,0}|-{axis cs:ARP,1.7178110768}) -- ({rel axis cs:1,0}|-{axis cs:ARP,1.7178110768}) node [pos=0.33, above] {Entropía};
 \end{axis}
 \end{tikzpicture} \\
 
@@ -326,8 +326,8 @@ Los datasets utilizados en este experimento fueron: \\
 A continuación mostramos los resultados para varios datasets. Se presentan:
 
 \begin{itemize}
-    \item Un histograma que grafica la información que aporta cada nodo, con el valor de la entropia de la fuente graficado. Este tipo de gráfico permite visualizar los nodos distinguidos, ya que estos son los que se encuentran por debajo de la linea de entropia, debido a que su información es menor a la entropía de la fuente. Aclaramos que la unidad utilizada en el eje de las ordenadas en los histogramas corresponde a la información de cada simbolo de la fuente (no esta graficado debido a restricciones de espacio).
-    \item El valor de la entropia.
+    \item Un histograma que grafica la información que aporta cada nodo, con el valor de la entropía de la fuente graficado. Este tipo de gráfico permite visualizar los nodos distinguidos, ya que estos son los que se encuentran por debajo de la linea de entropía, debido a que su información es menor a la entropía de la fuente. Aclaramos que la unidad utilizada en el eje de las ordenadas en los histogramas corresponde a la información de cada símbolo de la fuente (no está graficado debido a restricciones de espacio).
+    \item El valor de la entropía.
     \item Los nodos distinguidos.
 \end{itemize}
 
@@ -360,7 +360,7 @@ El histograma del dataset Aulas DC es el siguiente:
     %\addplot[color=red] table[x index=0,y index=1]{datos/timevecinos};
     %\addplot[color=blue] table[x index=0,y index=1]{datos/timesplines};
     %\legend{Lineal}
-    \draw [red] ({rel axis cs:0,0}|-{axis cs:10,4.98}) -- ({rel axis cs:1,0}|-{axis cs:10,4.98}) node [pos=0.33, above] {Entropia};
+    \draw [red] ({rel axis cs:0,0}|-{axis cs:10,4.98}) -- ({rel axis cs:1,0}|-{axis cs:10,4.98}) node [pos=0.33, above] {Entropía};
     \end{axis}
     \end{tikzpicture}
 \end{center}
@@ -371,7 +371,7 @@ El histograma del dataset Aulas DC es el siguiente:
 %    \caption{Topología de la red para el Dataset Aulas DC}
 %\end{figure}
 
-La \textbf{entropia} de la fuente es: 4.98
+La \textbf{entropía} de la fuente es: 4.98
 
 La \textbf{cantidad símbolos} es: 101
 
@@ -388,7 +388,7 @@ Los \textbf{nodos distinguidos} son:
 
 En esta red encontramos la particularidad de que hay 2 nodos distinguidos que tienen
 una cantidad de apariciones en la \texttt{IP} \textit{destino} muy parecida.
-La \texttt{IP} 10.2.203.254 tiene 81 apariciones mientras que la \texttt{IP} 10.2.2.254 tiene 76 apariciones. Especulamos que ambos son routers que coinciden en una porcion de su cobertura.
+La \texttt{IP} 10.2.203.254 tiene 81 apariciones mientras que la \texttt{IP} 10.2.2.254 tiene 76 apariciones. Especulamos que ambos son routers que coinciden en una porción de su cobertura.
 
 \subsubsection{Laboratorios DC}
 
@@ -424,12 +424,12 @@ El histograma del dataset Laboratorios DC es el siguiente:
     %\addplot[color=red] table[x index=0,y index=1]{datos/timevecinos};
     %\addplot[color=blue] table[x index=0,y index=1]{datos/timesplines};
     %\legend{Lineal}
-    \draw [red] ({rel axis cs:0,0}|-{axis cs:10,6.19}) -- ({rel axis cs:1,0}|-{axis cs:10,6.19}) node [pos=0.33, above] {Entropia};
+    \draw [red] ({rel axis cs:0,0}|-{axis cs:10,6.19}) -- ({rel axis cs:1,0}|-{axis cs:10,6.19}) node [pos=0.33, above] {};
     \end{axis}
     \end{tikzpicture}
 \end{center}
 
-La \textbf{entropia} de la fuente es: 6.19
+La \textbf{entropía} de la fuente es: 6.19
 
 La \textbf{cantidad símbolos} es: 275
 
@@ -506,7 +506,7 @@ El histograma del dataset Biblioteca Noriega es el siguiente:
     %\addplot[color=red] table[x index=0,y index=1]{datos/timevecinos};
     %\addplot[color=blue] table[x index=0,y index=1]{datos/timesplines};
     %\legend{Lineal}
-    \draw [red] ({rel axis cs:0,0}|-{axis cs:10,5.91}) -- ({rel axis cs:1,0}|-{axis cs:10,5.91}) node [pos=0.33, above] {Entropia};
+    \draw [red] ({rel axis cs:0,0}|-{axis cs:10,5.91}) -- ({rel axis cs:1,0}|-{axis cs:10,5.91}) node [pos=0.33, above] {Entropía};
     \end{axis}
     \end{tikzpicture}
 \end{center}
@@ -565,7 +565,7 @@ El histograma del dataset Starbucks es el siguiente:
     %\addplot[color=red] table[x index=0,y index=1]{datos/timevecinos};
     %\addplot[color=blue] table[x index=0,y index=1]{datos/timesplines};
     %\legend{Lineal}
-    \draw [red] ({rel axis cs:0,0}|-{axis cs:10,3.51}) -- ({rel axis cs:1,0}|-{axis cs:10,3.51}) node [pos=0.33, above] {Entropia};
+    \draw [red] ({rel axis cs:0,0}|-{axis cs:10,3.51}) -- ({rel axis cs:1,0}|-{axis cs:10,3.51}) node [pos=0.33, above] {Entropía};
     \end{axis}
     \end{tikzpicture}
 \end{center}
