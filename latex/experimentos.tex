@@ -68,7 +68,7 @@ Los resultados fueron los siguientes: \\
         (ARP,3.8797634179)
         (IP,0.1045889014)
     };
-    \draw [red] ({rel axis cs:0,0}|-{axis cs:ARP,0.378751880122}) -- ({rel axis cs:1,0}|-{axis cs:ARP,0.378751880122}) node [pos=0.33, above] {Entropia};
+    \draw [red] ({rel axis cs:0,0}|-{axis cs:ARP,0.378751880122}) -- ({rel axis cs:1,0}|-{axis cs:ARP,0.378751880122}) node [pos=0.33, above] {Entropía};
 \end{axis}
 \end{tikzpicture} \\
 
@@ -116,7 +116,7 @@ Los resultados fueron los siguientes: \\
         (ARP,2.20654663262)
         (IP,0.6852096501)
     };
-    \draw [red] ({rel axis cs:0,0}|-{axis cs:ARP,1.32892399253}) -- ({rel axis cs:1,0}|-{axis cs:ARP,1.32892399253}) node [pos=0.33, above] {Entropia};
+    \draw [red] ({rel axis cs:0,0}|-{axis cs:ARP,1.32892399253}) -- ({rel axis cs:1,0}|-{axis cs:ARP,1.32892399253}) node [pos=0.33, above] {Entropía};
 \end{axis}
 \end{tikzpicture} \\
 
@@ -166,7 +166,7 @@ Los resultados fueron los siguientes: \\
         (ARP,6.81873537048)
         (IP,0.0945486008159)
         };
-    \draw [red] ({rel axis cs:0,0}|-{axis cs:ARP,0.417285180797}) -- ({rel axis cs:1,0}|-{axis cs:ARP,0.417285180797}) node [pos=0.33, above] {Entropia};
+    \draw [red] ({rel axis cs:0,0}|-{axis cs:ARP,0.417285180797}) -- ({rel axis cs:1,0}|-{axis cs:ARP,0.417285180797}) node [pos=0.33, above] {Entropía};
 \end{axis}
 \end{tikzpicture} \\
 
@@ -218,13 +218,14 @@ Los resultados fueron los siguientes: \\
         (ARP,2.63386554765)
         (IP,0.821967760322)
     };
-    \draw [red] ({rel axis cs:0,0}|-{axis cs:ARP,1.7178110768}) -- ({rel axis cs:1,0}|-{axis cs:ARP,1.7178110768}) node [pos=0.33, above] {Entropia};
+    \draw [red] ({rel axis cs:0,0}|-{axis cs:ARP,1.7178110768}) -- ({rel axis cs:1,0}|-{axis cs:ARP,1.7178110768}) node [pos=0.33, above] {Entropía};
 \end{axis}
 \end{tikzpicture} \\
 
 % Discusion ------------------------------------
 
-Por lo que podemos ver, la incidencia de \texttt{ARP} es muy baja en el primer Dataset ya que en una biblioteca hay poco recambio de dispositivos y pocos hosts, lo cual hace que la incidencia de \texttt{ARP} sea menor. En cambio, si hay muchos mas paquetes \texttt{IP}, lo cual tiene sentido porque es el protocolo que todos los hosts usan para conectarse a internet. Por su parte, IPv6 tiene menor incidencia que IP (y también ARP), se lo atribuimos a que esta versión de IP es menos usada. Entonces como podemos ver, el único símbolo predecible menor que la entropía es el de \texttt{IP}. Es importante aclarar que en este Dataset observamos un comportamiento que en las demás capturas no sucedió: por cada paquete \texttt{ARP} "who-has" vemos inmediatamente otro \texttt{ARP} "is-at", lo cual sugiere una topología o funcionamiento distinto (sin embargo, todas las capturas fueron realizadas bajo las mismas condiciones).\\
+Por lo que podemos ver, la incidencia de \texttt{ARP} es muy baja en el primer Dataset ya que en una biblioteca hay poco recambio de dispositivos y pocos hosts, lo cual hace que la incidencia de \texttt{ARP} sea menor. En cambio, si hay muchos mas paquetes \texttt{IP}, lo cual tiene sentido porque es el protocolo que todos los hosts usan para conectarse a internet. Por su parte, IPv6 tiene menor incidencia que IP (y también ARP), se lo atribuimos a que esta versión de IP es menos usada. Entonces como podemos ver, el único símbolo predecible menor que la entropía es el de \texttt{IP}.
+%Es importante aclarar que en este Dataset observamos un comportamiento que en las demás capturas no sucedió: por cada paquete \texttt{ARP} "who-has" vemos inmediatamente otro \texttt{ARP} "is-at", lo cual sugiere una topología o funcionamiento distinto (sin embargo, todas las capturas fueron realizadas bajo las mismas condiciones).\\
 
 En el segundo Dataset, ya podemos hablar de una red (el Laboratorio de Computación) en la cual no solamente hay muchos mas hosts, sino el recambio de dispositivos que entran y se van de la red es mayor, por lo cual la incidencia de \texttt{ARP} sube. A su vez, \texttt{IP} sigue siendo el protocolo más usado al igual que en el dataset anterior. \\
 
@@ -232,41 +233,41 @@ El tercer Dataset presenta un protocolo que no se veía en las capturas anterior
 
 Analizando el cuarto Dataset (Noriega), vemos un nuevo protocolo: \texttt{IPX} (Internetworking Packet eXchange). De todos los datasets, este es el que menor incidencia \texttt{IP} tiene (56,57\%) sin embargo es mayor que la de los demás protocolos. \texttt{ARP} e \texttt{IPv6} comprenden entre el 15\% y 20\% de los paquetes cada uno. Así como vimos en el Dataset Laboratorios, esto se puede deber a la cantidad de gente que entra y sale de la red constantemente. \\
 
-Si tomamos la cantidad total de paquetes de cada protocolo en cada captura y la dividimos por el total de paquetes capturados, vemos la siguiente proporción: \\
+%Si tomamos la cantidad total de paquetes de cada protocolo en cada captura y la dividimos por el total de paquetes capturados, vemos la siguiente proporción: \\%
 
-\begin{center}
-    \begin{tikzpicture}
-        \pie[radius=5]{81/IP, 9/IPv6, 8/ARP, 1.7/LLC, 0.3/IPX}
-    \end{tikzpicture}
-\end{center}
+%\begin{center}
+%    \begin{tikzpicture}
+%        \pie[radius=5]{81/IP, 9/IPv6, 8/ARP, 1.7/LLC, 0.3/IPX}
+%    \end{tikzpicture}
+%\end{center}
 
-Finalmente, si definimos que un protocolo se distingue de otro según la cantidad total de paquetes de ese protocolo, el orden de distinsión es:
+% Finalmente, si definimos que un protocolo se distingue de otro según la cantidad total de paquetes de ese protocolo, el orden de distinsión es:
 
-\begin{enumerate}
-\item \texttt{IP}
-\item \texttt{IPv6}
-\item \texttt{ARP}
-\item \texttt{LLC}
-\item \texttt{IPX}
-\end{enumerate}
+%\begin{enumerate}
+%\item \texttt{IP}
+%\item \texttt{IPv6}
+%\item \texttt{ARP}
+%\item \texttt{LLC}
+%\item \texttt{IPX}
+%\end{enumerate}
 
 % end subsection
 
 \subsection{Experimento incidencia de ARP}
 
-Para poder observar la incidencia de paquetes \texttt{ARP} en la red, vamos a utilizar una serie de muestras tomadas de distintas redes y graficarlas en un histograma, 
-después de mostrar los resultados daremos una explicación del por que de los mismo. Aclaración: todas las capturas son de 15 minutos.\\
+Para poder observar la incidencia de paquetes \texttt{ARP} en la red, vamos a utilizar una serie de muestras tomadas de distintas redes y graficarlas en un histograma,
+después de mostrar los resultados daremos una explicación del por que de los mismo.\\
 
-Usamos dos datasets exlusivos para poder observar el comportamiento de redes más controladas, bajo la hipótesis de que entre más hosts hay más incidencia de paquetes ARP 
+Usamos dos datasets exclusivos para poder observar el comportamiento de redes más controladas, bajo la hipótesis de que entre más hosts hay más incidencia de paquetes ARP
 en la red. Los datasets que usamos son los siguientes:\\
 
 \begin{itemize}
-    \item \texttt{Dataset} Biblioteca pabellón 2 (wifi), captura de 15 minutos
-    \item \texttt{Dataset} Laboratorios pabellón 1 (wifi), captura de 15 minutos
-    \item \texttt{Dataset} Red de un Starbucks(wifi), captura de 15 minutos
-    \item \texttt{Dataset} Red de la Biblioteca Noriega del pabellón 1(wifi), captura de 15 minutos
-    \item \texttt{Dataset} Hogar de uno de los integrantes del grupo, sin ningun otro dispositivo(wifi), captura de 15 minutos
-    \item \texttt{Dataset} Hogar de uno de los integrantes del grupo, con más dispositivos conectados a la red(wifi), captura de 15 minutos
+    \item Dataset Biblioteca pabellón 2 (wifi), captura de 15 minutos
+    \item Dataset Laboratorios pabellón 1 (wifi), captura de 15 minutos
+    \item Dataset Red de un Starbucks(wifi), captura de 15 minutos
+    \item Dataset Red de la Biblioteca Noriega del pabellón 1(wifi), captura de 15 minutos
+    \item Dataset Hogar de uno de los integrantes del grupo, sin ningun otro dispositivo(wifi), captura de 15 minutos
+    \item Dataset Hogar de uno de los integrantes del grupo, con más dispositivos conectados a la red(wifi), captura de 15 minutos
 \end{itemize}
 
 \begin{figure}[H]
@@ -285,7 +286,7 @@ conectado a la red y cuando hay más cantidad. Podemos ver que el tráfico de pa
 cuando hay mayor cantidad de dispositivos el tráfico general aumenta y también el porcentaje de paquetes \texttt{ARP}, porque en este caso hay mas hosts.\\
 
 Por último tenemos dos mediciones realizadas en la biblioteca Noriega y un Starbucks, en estas podemos ver resultados similares a los anteriores. La biblioteca tiene a muchas
-gente entrando y saliendo, muchos de ellos se quedan a usar las instalaciones para estudiar con sus celulares y computadoras portátiles. En el Starbucks notamos que era menos
+personas entrando y saliendo, muchos de ellos se quedan a usar las instalaciones para estudiar con sus celulares y computadoras portátiles. En el Starbucks notamos que era menos
 común cuando se realizo las mediciones.\\
 
 La conclusión que podemos sacar es que, si bien estas muestras pertenecen a distintos lugares y horarios, podemos ver como el tráfico de paquetes \texttt{ARP} es más significativo cuando
@@ -296,7 +297,7 @@ la red tiende a recibir nuevos hosts con más constancia.
 
 \subsection{Experimento nodos distinguidos}
 
-Para distinguir los nodos de una red, tomaremos como fuente de información $S_1$ el campo
+Para distinguir los nodos de una red, tomaremos como fuente de información $S_1$, que utilizaba el campo
 \texttt{IP} \textit{destino} de los paquetes \texttt{ARP Who-Has}.
 
 No utilizaremos otros paquetes distintos de \texttt{ARP}, ya que queremos restringirnos a las comunicaciones internas de la subred. \\
@@ -325,74 +326,131 @@ Los datasets utilizados en este experimento fueron: \\
 A continuación mostramos los resultados para varios datasets. Se presentan:
 
 \begin{itemize}
-    \item Un grafo que permite visualizar la topología del dataset en cuestión. Los nodos en rojo son los distinguidos, es decir que su información es menor a la entropía de la fuente.
-    \item La entropia.
-    \item La cantidad de símbolos.
+    \item Un histograma que grafica la información que aporta cada nodo, con el valor de la entropía de la fuente graficado. Este tipo de gráfico permite visualizar los nodos distinguidos, ya que estos son los que se encuentran por debajo de la linea de entropía, debido a que su información es menor a la entropía de la fuente. Aclaramos que la unidad utilizada en el eje de las ordenadas en los histogramas corresponde a la información de cada símbolo de la fuente (no está graficado debido a restricciones de espacio).
+    \item El valor de la entropía.
     \item Los nodos distinguidos.
 \end{itemize}
 
 \subsubsection{Aulas DC}
 
-La topología de la red Aulas DC es la siguiente:
+El histograma del dataset Aulas DC es el siguiente:
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.85\textwidth]{imagenes/aulasDC.png}
-    \caption{Topología de la red para el Dataset Aulas DC}
-\end{figure}
+\begin{center}
+    \begin{tikzpicture}
+    \begin{axis}[
+        title={},
+        xlabel={Dataset Aulas DC},
+        %ylabel={Información del símbolo},
+        %xtick=data,
+        ylabel absolute,
+        ylabel style={yshift=.3cm},
+        scaled x ticks=false,
+        scaled y ticks=false,
+        enlargelimits=0.05,
+        width=18cm,
+        bar width= .1cm,
+        height=0.45\textwidth,
+        legend style={at={(1.015,1)},anchor=north west},
+        no markers,
+        thick,
+        cycle list name=exotic,
+        %xticklabels from table={datos/nodosStarbucks.txt}{Label}
+    ]
+    \addplot[ybar,fill=blue] table[x index=1,y index=2]{datos/nodosAulas.txt};
+    %\addplot[color=red] table[x index=0,y index=1]{datos/timevecinos};
+    %\addplot[color=blue] table[x index=0,y index=1]{datos/timesplines};
+    %\legend{Lineal}
+    \draw [red] ({rel axis cs:0,0}|-{axis cs:10,4.98}) -- ({rel axis cs:1,0}|-{axis cs:10,4.98}) node [pos=0.33, above] {Entropía};
+    \end{axis}
+    \end{tikzpicture}
+\end{center}
 
-La \textbf{entropia} de la fuente es: 4.98
+%\begin{figure}[H]
+%    \centering
+%    \includegraphics[width=0.85\textwidth]{imagenes/aulasDC.png}
+%    \caption{Topología de la red para el Dataset Aulas DC}
+%\end{figure}
+
+La \textbf{entropía} de la fuente es: 4.98
 
 La \textbf{cantidad símbolos} es: 101
 
 Los \textbf{nodos distinguidos} son:
 
 \begin{itemize}
-    \item Con etiqueta 1: 10.2.6.250 tiene información 4.11
-    \item Con etiqueta 2: 10.2.203.254 tiene información 2.53
-    \item Con etiqueta 3: 10.2.2.205 tiene información 4.48
-    \item Con etiqueta 4: 10.2.1.230 tiene información 4.70
-    \item Con etiqueta 5: 10.2.1.254 tiene información 3.91
-    \item Con etiqueta 6: 10.2.2.254 tiene información 2.62
+    \item Con etiqueta 24: 10.2.6.250 tiene información 4.11
+    \item Con etiqueta 48: 10.2.2.205 tiene información 4.48
+    \item Con etiqueta 51: 10.2.1.230 tiene información 4.70
+    \item Con etiqueta 71: 10.2.203.254 tiene información 2.53
+    \item Con etiqueta 83: 10.2.1.254 tiene información 3.91
+    \item Con etiqueta 101: 10.2.2.254 tiene información 2.62
 \end{itemize}
 
 En esta red encontramos la particularidad de que hay 2 nodos distinguidos que tienen
 una cantidad de apariciones en la \texttt{IP} \textit{destino} muy parecida.
-La \texttt{IP} 10.2.203.254 tiene 81 apariciones mientras que la \texttt{IP} 10.2.2.254 tiene 76 apariciones.
-
-Además, nótese dichos nodos aparecen como dos componentes diferentes en el grafo que no hablan entre si,
-lo que podría sugerir que la \texttt{IP} 10.2.203.254 es el \textit{Gateway} de la red
-y la \texttt{IP} 10.2.2.254 podría ser un Switch.
+La \texttt{IP} 10.2.203.254 tiene 81 apariciones mientras que la \texttt{IP} 10.2.2.254 tiene 76 apariciones. Especulamos que ambos son routers que coinciden en una porción de su cobertura.
 
 \subsubsection{Laboratorios DC}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.85\textwidth]{imagenes/labosDC.png}
-    \caption{Topología de la red para el Dataset Laboratorios DC}
-\end{figure}
+El histograma del dataset Laboratorios DC es el siguiente:
+%\begin{figure}[H]
+%    \centering
+%    \includegraphics[width=0.85\textwidth]{imagenes/labosDC.png}
+%    \caption{Topología de la red para el Dataset Laboratorios DC}
+%\end{figure}
 
-La \textbf{entropia} de la fuente es: 6.19
+\begin{center}
+    \begin{tikzpicture}
+    \begin{axis}[
+        title={},
+        xlabel={Dataset Labos DC},
+        %ylabel={Información del símbolo},
+        %xtick=data,
+        ylabel absolute,
+        ylabel style={yshift=.3cm},
+        scaled x ticks=false,
+        scaled y ticks=false,
+        enlargelimits=0.05,
+        width=19cm,
+        bar width= .008cm,
+        height=0.45\textwidth,
+        legend style={at={(1.015,1)},anchor=north west},
+        no markers,
+        thick,
+        cycle list name=exotic,
+        %xticklabels from table={datos/nodosStarbucks.txt}{Label}
+    ]
+    \addplot[ybar,fill=blue] table[x index=1,y index=2]{datos/nodosLabos.txt};
+    %\addplot[color=red] table[x index=0,y index=1]{datos/timevecinos};
+    %\addplot[color=blue] table[x index=0,y index=1]{datos/timesplines};
+    %\legend{Lineal}
+    \draw [red] ({rel axis cs:0,0}|-{axis cs:10,6.19}) -- ({rel axis cs:1,0}|-{axis cs:10,6.19}) node [pos=0.33, above] {};
+    \end{axis}
+    \end{tikzpicture}
+\end{center}
+
+La \textbf{entropía} de la fuente es: 6.19
 
 La \textbf{cantidad símbolos} es: 275
 
 Los \textbf{nodos distinguidos} son:
 
 \begin{itemize}
-    \item Con etiqueta 1: 10.2.7.249 tiene información 5.34
-    \item Con etiqueta 2: 10.2.7.254 tiene información 5.32
-    \item Con etiqueta 3: 10.2.7.250 tiene información 4.35
-    \item Con etiqueta 4: 10.2.203.27 tiene información 3.86
-    \item Con etiqueta 5: 10.2.3.230 tiene información 5.86
-    \item Con etiqueta 6: 10.2.203.254 tiene información 3.10
-    \item Con etiqueta 7: 10.2.1.230 tiene información 3.91
-    \item Con etiqueta 8: 10.2.0.67 tiene información 5.24
-    \item Con etiqueta 9: 10.2.0.64 tiene información 5.34
-    \item Con etiqueta 10: 10.2.0.65 tiene información 5.34
-    \item Con etiqueta 11: 169.254.255.255 tiene información 5.95
-    \item Con etiqueta 12: 169.254.231.139 tiene información 5.24
-    \item Con etiqueta 13: 10.2.1.254 tiene información 3.94
-    \item Con etiqueta 14: 10.2.0.187 tiene información 4.77
+    \item Con etiqueta 7: 10.2.0.187 tiene información 4.77
+    \item Con etiqueta 104: 10.2.7.254 tiene información 5.32
+    \item Con etiqueta 105: 10.2.7.250 tiene información 4.35
+    \item Con etiqueta 120: 10.2.203.27 tiene información 3.86
+    \item Con etiqueta 121: 10.2.3.230 tiene información 5.86
+    \item Con etiqueta 167: 10.2.7.249 tiene información 5.34
+    \item Con etiqueta 176: 10.2.1.230 tiene información 3.91
+    \item Con etiqueta 218: 10.2.203.254 tiene información 3.10
+    \item Con etiqueta 221: 10.2.0.67 tiene información 5.24
+    \item Con etiqueta 222: 10.2.0.64 tiene información 5.34
+    \item Con etiqueta 223: 10.2.0.65 tiene información 5.34
+    \item Con etiqueta 242: 169.254.255.255 tiene información 5.95
+    \item Con etiqueta 244: 169.254.231.139 tiene información 5.24
+    \item Con etiqueta 249: 10.2.1.254 tiene información 3.94
+
 \end{itemize}
 
 En esta red está claro que el \textit{Gateway} es la \texttt{IP} 10.2.203.254, debido a que
@@ -402,8 +460,7 @@ Las particularidades a mencionar son:
 \begin{itemize}
     \item La cantidad de nodos distinguidos es alta, lo cual lo atribuimos a la alta
         cantidad de \texttt{IPs} distintas.
-        Dichos nodos asumimos que representan diferentes Switches en la red.
-    \item Cabe destacar que el nodo distinguido con \texttt{IP} 10.2.0.187 (etiqueta 14)
+    \item Cabe destacar que el nodo distinguido con \texttt{IP} 10.2.0.187 (etiqueta 7)
         no se comunica con ningún otro nodo de la red. Al analizar los paquetes \texttt{ARP} que lo nombraban como
         destino, observamos que la fuente es la misma \texttt{IP}. No pudimos encontrar una explicación razonable para
         esto.
@@ -416,11 +473,43 @@ Las particularidades a mencionar son:
 
 \subsubsection{Biblioteca Noriega}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.85\textwidth]{imagenes/noriega.png}
-    \caption{Topología de la red para el Dataset Biblioteca Noriega}
-\end{figure}
+El histograma del dataset Biblioteca Noriega es el siguiente:
+
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=0.85\textwidth]{imagenes/noriega.png}
+%     \caption{Topología de la red para el Dataset Biblioteca Noriega}
+% \end{figure}
+
+\begin{center}
+    \begin{tikzpicture}
+    \begin{axis}[
+        title={},
+        xlabel={Dataset Noriega},
+        %ylabel={Información del símbolo},
+        %xtick=data,
+        ylabel absolute,
+        ylabel style={yshift=.3cm},
+        scaled x ticks=false,
+        scaled y ticks=false,
+        enlargelimits=0.05,
+        width=19cm,
+        bar width= .1cm,
+        height=0.45\textwidth,
+        legend style={at={(1.015,1)},anchor=north west},
+        no markers,
+        thick,
+        cycle list name=exotic,
+        %xticklabels from table={datos/nodosStarbucks.txt}{Label}
+    ]
+    \addplot[ybar,fill=blue] table[x index=1,y index=2]{datos/nodosNoriega.txt};
+    %\addplot[color=red] table[x index=0,y index=1]{datos/timevecinos};
+    %\addplot[color=blue] table[x index=0,y index=1]{datos/timesplines};
+    %\legend{Lineal}
+    \draw [red] ({rel axis cs:0,0}|-{axis cs:10,5.91}) -- ({rel axis cs:1,0}|-{axis cs:10,5.91}) node [pos=0.33, above] {Entropía};
+    \end{axis}
+    \end{tikzpicture}
+\end{center}
 
 La \textbf{entropía} de la fuente es: 5.91
 
@@ -429,10 +518,10 @@ La \textbf{cantidad símbolos} es: 110
 Los \textbf{nodos distinguidos} son:
 
 \begin{itemize}
-    \item Con etiqueta 1: 10.255.255.254 tiene información 4.13
-    \item Con etiqueta 2: 157.92.15.199 tiene información 2.66
-    \item Con etiqueta 3: 157.92.15.133 tiene información 4.35
-    \item Con etiqueta 4: 157.92.15.136 tiene información 5.45
+    \item Con etiqueta 7: 10.255.255.254 tiene información 4.13
+    \item Con etiqueta 24: 157.92.15.199 tiene información 2.66
+    \item Con etiqueta 53: 157.92.15.133 tiene información 4.35
+    \item Con etiqueta 57: 157.92.15.136 tiene información 5.45
 \end{itemize}
 
 En esta red está claro que el \textit{Gateway} es la \texttt{IP} 157.92.15.199, debido a que
@@ -440,20 +529,52 @@ supera ampliamente a los demás nodos distinguidos.
 
 Las particularidades a mencionar son:
 \begin{itemize}
-    \item Los nodos con etiqueta 3 y 4 (157.92.15.133 y 157.92.15.136) suponemos
-        que son Switches que particionan la red, evitando conflictos.
-    \item  Se vuelve a presentar el caso de una \texttt{IP} que está fuera de la red: 10.255.255.254, que tiene la particularidad de estar muy aislado de los otros nodos.
+    \item Los nodos con etiqueta 53 y 57 (157.92.15.133 y 157.92.15.136) suponemos
+        que son hosts que utilizan la red por fuera del promedio.
+    \item  Se vuelve a presentar el caso de una \texttt{IP} que está fuera de la red: 10.255.255.254.
 \end{itemize}
 
 
 
 \subsubsection{Starbucks}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.85\textwidth]{imagenes/starbucks.png}
-    \caption{Topología de la red para el Dataset Starbucks}
-\end{figure}
+El histograma del dataset Starbucks es el siguiente:
+
+\begin{center}
+    \begin{tikzpicture}
+    \begin{axis}[
+        title={},
+        xlabel={Dataset Starbucks},
+        %ylabel={Información del símbolo},
+        %xtick=data,
+        ylabel absolute,
+        ylabel style={yshift=.3cm},
+        scaled x ticks=false,
+        scaled y ticks=false,
+        enlargelimits=0.05,
+        width=15cm,
+        bar width= .2cm,
+        height=0.45\textwidth,
+        legend style={at={(1.015,1)},anchor=north west},
+        no markers,
+        thick,
+        cycle list name=exotic,
+        %xticklabels from table={datos/nodosStarbucks.txt}{Label}
+    ]
+    \addplot[ybar,fill=blue] table[x index=1,y index=2]{datos/nodosStarbucks.txt};
+    %\addplot[color=red] table[x index=0,y index=1]{datos/timevecinos};
+    %\addplot[color=blue] table[x index=0,y index=1]{datos/timesplines};
+    %\legend{Lineal}
+    \draw [red] ({rel axis cs:0,0}|-{axis cs:10,3.51}) -- ({rel axis cs:1,0}|-{axis cs:10,3.51}) node [pos=0.33, above] {Entropía};
+    \end{axis}
+    \end{tikzpicture}
+\end{center}
+
+%\begin{figure}[H]
+%    \centering
+%    \includegraphics[width=0.85\textwidth]{imagenes/starbucks.png}
+%    \caption{Topología de la red para el Dataset Starbucks}
+%\end{figure}
 
 La \textbf{entropía} de la fuente es: 3.51
 
@@ -462,7 +583,7 @@ La \textbf{cantidad símbolos} es: 32
 Los \textbf{nodos distinguidos} son:
 
 \begin{itemize}
-    \item Con etiqueta 1: 10.254.70.1 tiene información 1.21
+    \item Con etiqueta 32: 10.254.70.1 tiene información 1.21
 \end{itemize}
 
 En esta red está claro que el \textit{Gateway} es la \texttt{IP} 10.254.70.1, debido a que

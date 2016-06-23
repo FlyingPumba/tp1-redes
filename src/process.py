@@ -29,6 +29,7 @@ def nodosDistinguidos(pkt):
 
 def calcularEntropia(lista):
     elementosDistintos = {}
+    infoElemento = {}
     # contamos las apariciones de cada elemento distinto
     for elem in lista:
         if elem not in elementosDistintos:
@@ -39,24 +40,37 @@ def calcularEntropia(lista):
     entropia = 0
     sum_0025 = 0.0
     sum_0005 = 0.0
-    print "\nElementos de la fuente de informacion:"
-    print elementosDistintos
+    #print "\nElementos de la fuente de informacion:"
+    #print elementosDistintos
+    j = 0
+    archivo = open("nodosNoriega.txt", "w")
+    s = "Label X Y"
+    archivo.write(s)
     for elem, apariciones in elementosDistintos.iteritems():
         proba = float(apariciones)/float(len(lista))
+        info = (- math.log(proba)/math.log(2))
         elementosDistintos[elem] = proba
+        infoElemento[elem] = info
+        j = j + 1
+        i = "%.3f" % info
+        s = str(elem) + " " + str(j) + " " + i + "\n"
+        archivo.write(s)
         if proba <= 0.005:
             sum_0005 += proba
         elif proba <= 0.025:
             sum_0025 += proba
-        entropia += proba * (- math.log(proba)/math.log(2))
+        entropia += proba * info
 
     sorted_elems = sorted(elementosDistintos.items(), key=operator.itemgetter(1), reverse=True)
+    
     for tupla in sorted_elems:
         if tupla[1] > 0.025:
             print "Simbolo {0} tiene probabilidad {1}".format(tupla[0], tupla[1])
     print "Los simbolos con probabilidad menor o igual a 0.025 suman probabilidad {0}".format(sum_0025)
     print "Los simbolos con probabilidad menor o igual a 0.005 suman probabilidad {0}".format(sum_0005)
     print "\nLa entropia de la fuente es {0}".format(entropia)
+    
+    archivo.close()
     return entropia
 
 exp = ""
